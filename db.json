@@ -1,0 +1,43 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "name": "Tran Tuan Hai",
+      "email": "trantuanhai0311@gmail.com",
+      "salary": "trantuanhai0311@gmail.com",
+      "id": 2
+    },
+    {
+      "name": "Tran Tuan Hai",
+      "email": "trantuanhai0311@gmail.com",
+      "salary": "trantuanhai0311@gmail.com",
+      "id": 3
+    },
+    {
+      "name": "Tran Tuan Hai",
+      "email": "trantuanhai0311@gmail.com",
+      "salary": "trantuanhai0311@gmail.com",
+      "id": 4
+    },
+    {
+      "name": "Tran Tuan Hai",
+      "email": "trantuanhai0311@gmail.com",
+      "salary": "trantuanhai0311@gmail.com",
+      "id": 5
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

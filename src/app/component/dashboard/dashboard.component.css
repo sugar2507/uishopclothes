@@ -1,0 +1,17 @@
+.dashboard-botttom{
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.dashboard-chart{
+    padding: 30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 2px 5px 6px rgb(0 21 41 / 20%);
+}
+.dashboard-doughnut{
+    padding: 0 10px 0 10px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 2px 5px 6px rgb(0 21 41 / 20%);
+}
