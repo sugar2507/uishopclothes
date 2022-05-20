@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,11 +21,26 @@ import { DashboardChartComponent } from './component/dashboard/dashboard-chart/d
 import { DashboardDoughnutComponent } from './component/dashboard/dashboard-doughnut/dashboard-doughnut.component';
 import { DashboardDoughnut2Component } from './component/dashboard/dashboard-doughnut2/dashboard-doughnut2.component';
 import { ProductComponent } from './component/product/product.component';
+import { HomeComponent } from './component/home/home.component';
+import { MenuComponent } from './component/menu/menu.component';
+import { HeaderComponent } from './component/header/header.component';
+import { FooterComponent } from './component/home/footer/footer.component';
+import { CenterComponent } from './component/home/center/center.component';
+import { HeaderHomeComponent } from './component/home/header/header.component';
+import { LayoutComponent } from './component/login/layout/layout.component';
+import { LoginComponent } from './component/login/login.component';
+import { RegisterComponent } from './component/register/register.component';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    CenterComponent,
+    MenuComponent,
+    HeaderHomeComponent,
     AppComponent,
     DashboardComponent,
     UsersComponent,
@@ -33,6 +48,8 @@ registerLocaleData(en);
     DashboardDoughnutComponent,
     DashboardDoughnut2Component,
     ProductComponent,
+    RegisterComponent,
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,9 +62,9 @@ registerLocaleData(en);
     NzLayoutModule,
     NzMenuModule,
     NzTableModule,
-    NzDropDownModule
+    NzDropDownModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
