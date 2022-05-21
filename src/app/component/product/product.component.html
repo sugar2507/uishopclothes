@@ -27,11 +27,14 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="prodCreate" class="row g-3 needs-validation" novalidate>
+        <form
+          [formGroup]="prodCreate"
+          class="row g-3 needs-validation"
+          novalidate
+          enctype="multipart/form-data"
+        >
           <div class="col-md-12">
-            <label for="validationCustom01" class="form-label"
-              >Tên</label
-            >
+            <label for="validationCustom01" class="form-label">Tên</label>
             <input
               formControlName="name"
               id="name"
@@ -40,9 +43,7 @@
             />
           </div>
           <div class="col-md-6">
-            <label for="validationCustom01" class="form-label"
-              >Số lượng</label
-            >
+            <label for="validationCustom01" class="form-label">Số lượng</label>
             <input
               type="number"
               class="form-control"
@@ -51,9 +52,7 @@
             />
           </div>
           <div class="col-md-6">
-            <label for="validationCustom01" class="form-label"
-              >Giá Bán</label
-            >
+            <label for="validationCustom01" class="form-label">Giá Bán</label>
             <input
               type="number"
               class="form-control"
@@ -80,7 +79,9 @@
             />
           </div>
           <div class="col-md-4">
-            <label for="validationCustom03" class="form-label">Tình trạng sản phẩm</label>
+            <label for="validationCustom03" class="form-label"
+              >Tình trạng sản phẩm</label
+            >
             <input
               type="number"
               class="form-control"
@@ -89,15 +90,26 @@
             />
           </div>
           <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Chi tiết</label>
-            <textarea class="form-control" formControlName="description"
-            id="description" rows="3"></textarea>
+            <label for="exampleFormControlTextarea1" class="form-label"
+              >Chi tiết</label
+            >
+            <textarea
+              class="form-control"
+              formControlName="description"
+              id="description"
+              rows="3"
+            ></textarea>
           </div>
           <div class="mb-3">
             <label for="formFileSm" class="form-label">Hình ảnh</label>
-            <img [src]=PhotoFilePath height="250px;" width="200px;">
-            <input (change)="uploadPhoto($event)" class="form-control form-control-sm" formControlName="image"
-            id="image" type="file">
+            <img [src]="PhotoFilePath" width="200px"/>
+            <input
+              (change)="uploadPhoto($event)"
+              class="form-control form-control-sm"
+              formControlName="image"
+              id="image"
+              type="file"
+            />
           </div>
           <div class="col-md-4">
             <label for="validationCustom03" class="form-label">Công ty</label>
@@ -105,7 +117,7 @@
               type="number"
               class="form-control"
               formControlName="company"
-            id="company"
+              id="company"
             />
           </div>
           <div class="col-md-4">
@@ -114,16 +126,16 @@
               type="number"
               class="form-control"
               formControlName="idcategory"
-            id="idcategory"
+              id="idcategory"
             />
-          </div> 
+          </div>
           <div class="col-md-4">
             <label for="validationCustom03" class="form-label">Giới tính</label>
             <input
               type="number"
               class="form-control"
               formControlName="sex"
-            id="sex"
+              id="sex"
             />
           </div>
         </form>
@@ -132,7 +144,9 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Đóng
         </button>
-        <button type="button" class="btn btn-primary" (click)="addProduct()">Lưu</button>
+        <button type="button" class="btn btn-primary" (click)="addProduct()">
+          Lưu
+        </button>
       </div>
     </div>
   </div>

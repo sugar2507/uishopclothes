@@ -30,6 +30,7 @@ import { HeaderHomeComponent } from './component/home/header/header.component';
 import { LayoutComponent } from './component/login/layout/layout.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
+import { ProductListComponent } from './component/menu/product-list/product-list.component';
 
 registerLocaleData(en);
 
@@ -50,6 +51,7 @@ registerLocaleData(en);
     ProductComponent,
     RegisterComponent,
     LayoutComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,

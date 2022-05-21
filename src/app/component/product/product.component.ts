@@ -1,19 +1,23 @@
-import { Component, OnInit ,Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Products } from 'src/app/model/products';
 import { ProductService } from 'src/app/service/product.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit {
+  progress!: number;
+  message!: string;
+  @Output() public onUploadFinished = new EventEmitter();
   prodDetail!: FormGroup;
   prodCreate!: FormGroup;
   prodObj: Products = new Products();
   prodList: Products[] = [];
+  // PhotoPath!: String;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,12 +26,12 @@ export class ProductComponent implements OnInit {
   ) {}
 
   @Input()
-  PhotoFilePath!: string;
-
+  PhotoFilePath: any;
+  PhotoProduct: any;
   ngOnInit(): void {
     this.getAllProduct();
     this.prodDetail = this.formBuilder.group({
-      id:[''],
+      id: [''],
       name: [''],
     });
     this.prodCreate = this.formBuilder.group({
@@ -42,7 +46,9 @@ export class ProductComponent implements OnInit {
       sex: [''],
       description: [''],
       idcategory: [''],
-    })
+    });
+    this.PhotoProduct = 'anonymous.png';
+    this.PhotoFilePath = 'https://localhost:44377/Photos/' + this.PhotoProduct;
   }
 
   getAllProduct() {
@@ -66,12 +72,19 @@ export class ProductComponent implements OnInit {
     this.prodObj.ORI_PRICE = this.prodCreate.value.oriprice;
     this.prodObj.USD_PRICE = this.prodCreate.value.usdprice;
     this.prodObj.HOTPRODUCT = this.prodCreate.value.hotproduct;
-    this.prodObj.IMAGE = this.prodCreate.value.image;
+    this.prodObj.IMAGE = this.prodCreate.value.image.replace(
+      /C:\\fakepath\\/,
+      ''
+    );
     this.prodObj.COMPANY = this.prodCreate.value.company;
     this.prodObj.SEX = this.prodCreate.value.sex;
     this.prodObj.DESCRIPTION = this.prodCreate.value.description;
     this.prodObj.IDCATEGORY = this.prodCreate.value.idcategory;
+    this.PhotoFilePath =
+      this.prodService.PhotoUrl + this.prodCreate.value.image;
 
+    console.log(this.PhotoFilePath);
+    console.log(this.prodObj.IMAGE);
     this.prodService.addProduct(this.prodObj).subscribe(
       (res) => {
         console.log(res);
@@ -84,16 +97,24 @@ export class ProductComponent implements OnInit {
     );
   }
 
+  uploadPhoto(event: any) {
+    var file = event.target.files[0];
+    const formData: FormData = new FormData();
+    formData.append('uploadedFile', file, file.name);
 
-
-  uploadPhoto(event:any){
-    var file=event.target.files[0];
-    const formData:FormData=new FormData();
-    formData.append('uploadedFile',file,file.name);
-
-    this.prodService.UploadPhoto(this.prodObj).subscribe((data:any)=>{
-      this.prodObj.IMAGE=data.toString();
-      this.PhotoFilePath=this.prodService.PhotoUrl+this.prodObj.IMAGE;
-    })
+    this.http
+      .post('https://localhost:44377/api/Products/SaveFile', formData, {
+        reportProgress: true,
+        observe: 'events',
+      })
+      .subscribe((data: any) => {
+        this.prodObj.IMAGE = data.toString();
+        this.PhotoFilePath = (
+          this.prodService.PhotoUrl +
+          '/' +
+          this.prodCreate.value.image
+        ).replace(/C:\\fakepath\\/, '');
+        console.log(this.PhotoFilePath);
+      });
   }
 }
