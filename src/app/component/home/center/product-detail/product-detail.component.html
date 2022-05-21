@@ -1,4 +1,5 @@
-<section class="single-product">
+
+<section class="single-product"*ngIf="product">
     <div class="container">
       <div class="row">
         <div class="col-md-5">
@@ -11,7 +12,7 @@
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <img
-                    src="assets/images/product-3.jpg"
+                    src="assets/images/items/2.jpg"
                     width="100%"
                     height="100%"
                     class="img-fluid"
@@ -19,7 +20,7 @@
                 </div>
                 <div class="carousel-item">
                   <img
-                    src="assets/images/product-2.jpg"
+                    src="assets/images/items/1.jpg"
                     alt=""
                     class="img-fluid"
                     width="100%"
@@ -28,7 +29,7 @@
                 </div>
                 <div class="carousel-item">
                   <img
-                    src="assets/images/product-1.jpg"
+                    src="assets/images/1.jpg"
                     alt=""
                     class="img-fluid"
                     width="100%"
@@ -75,13 +76,16 @@
   
         <div class="col-md-7">
           <div class="single-product-details mt-5 mt-lg-0">
-            <h2>Eclipse Crossbody</h2>
+            <h2>Eclipse Crossbody({{ product.NAME }})</h2>
             <div class="sku_wrapper mb-4">
               ID: <span class="text-muted">AB1563456789 </span>
             </div>
+            <div>
+           <a routerLink="/cart"> <i class="fa fa-shopping-bag"></i></a>  
+            </div>
             <hr />
   
-            <h3 class="product-price">$300 <del>$119.90</del></h3>
+            <h3 class="product-price">$300 <del>${{ product.PRICE  }}</del></h3>
   
             <p class="product-description my-4">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum
@@ -104,7 +108,7 @@
                   size="4"
                 />
                 <a
-                  href="#"
+                (click)="addToCart(product)"
                   class="btn btn-main btn-small"
                   style="border: solid 2px orange"
                   >Add to cart</a

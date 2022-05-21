@@ -13,6 +13,7 @@ export class ProductService {
   constructor(private http: HttpClient) {
     this.ProdUrl = 'https://localhost:44377/api/Products';
     this.PhotoUrl = 'https://localhost:44377/Photos/';
+
   }
 
   getAllProduct() {
@@ -38,6 +39,9 @@ export class ProductService {
       })
     );
   }
-
+  getDetailproduct(emp: Products){
+    return this.http.get<Products>(this.ProdUrl+'/'+emp.ID).pipe(
+    )
+  }
   
 }

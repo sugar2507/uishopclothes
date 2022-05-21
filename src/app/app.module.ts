@@ -30,12 +30,16 @@ import { HeaderHomeComponent } from './component/home/header/header.component';
 import { LayoutComponent } from './component/login/layout/layout.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
+import { CategoryComponent } from './component/category/category.component';
+import { DetailComponent } from './component/home/center/product-detail/product-detail.component';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     HomeComponent,
+    DetailComponent,
+    CategoryComponent,
     HeaderComponent,
     FooterComponent,
     CenterComponent,
