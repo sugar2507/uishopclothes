@@ -19,3 +19,12 @@
   .table{
     padding-top: 20px;
   }
+  .modal-dialog{
+    max-width: 1000px;
+    height: 1000px;
+  }
+  .modal-dialog .modal-content .modal-body{
+    max-height: 900px;
+    height: 900px;
+    
+}

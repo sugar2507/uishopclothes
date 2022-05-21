@@ -32,6 +32,7 @@ import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { CategoryComponent } from './component/category/category.component';
 import { DetailComponent } from './component/home/center/product-detail/product-detail.component';
+import { ProductListComponent } from './component/menu/product-list/product-list.component';
 
 registerLocaleData(en);
 
@@ -54,6 +55,7 @@ registerLocaleData(en);
     ProductComponent,
     RegisterComponent,
     LayoutComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,

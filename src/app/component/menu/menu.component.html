@@ -35,8 +35,9 @@
                 </form>
 
                 <ul class="list-menu">
-                  <li *ngFor="let cate of cateList"><a>{{cate.NAME}} </a></li>
-                 
+                  <li *ngFor="let empList of empList">
+                    <a routerLink="product-list">{{ empList.NAME }} </a>
+                  </li>
                 </ul>
               </div>
               <!-- card-body.// -->
@@ -57,14 +58,14 @@
             </header>
             <div class="filter-content collapse show" id="collapse_2" style="">
               <div class="card-body">
-                <label class="custom-control custom-checkbox" *ngFor="let comp of compList">
+                <label class="custom-control custom-checkbox">
                   <input
                     type="checkbox"
                     checked=""
                     class="custom-control-input"
                   />
                   <div class="custom-control-label">
-                            {{comp.NAME}}                    
+                                             
 <b class="badge badge-pill badge-light float-right">120</b>
                   </div>
                 </label>
@@ -248,11 +249,16 @@
         <!-- sect-heading -->
 
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4" *ngFor="let prodList of prodList">
             <figure class="card card-product-grid">
               <div class="img-wrap">
                 <span class="badge badge-danger"> NEW </span>
-                <img src="assets/images/items/1.jpg" />
+                <img
+                [src]="createImgPath(prodList.IMAGE)"
+                  src=""
+                  style="width: 60px; height: 60px"
+                />
+                <!-- [src]="createImgPath(prodList.IMAGE)" -->
                 <a class="btn-overlay"
                   ><i class="fa fa-search-plus"></i> Quick view</a
                 >
@@ -260,9 +266,9 @@
               <!-- img-wrap.// -->
               <figcaption class="info-wrap">
                 <div class="fix-height">
-                  <a class="title">Great item name goes here</a>
+                  <a class="title">{{ prodList.NAME }}</a>
                   <div class="price-wrap mt-2">
-                    <span class="price">$1280</span>
+                    <span class="price">${{ prodList.PRICE }}</span>
                     <del class="price-old">$1980</del>
                   </div>
                   <!-- price-wrap.// -->
@@ -272,166 +278,6 @@
             </figure>
           </div>
           <!-- col.// -->
-
-          <div class="col-md-4">
-            <figure class="card card-product-grid">
-              <div class="img-wrap">
-                <img src="assets/images/items/2.jpg" />
-                <a class="btn-overlay"
-                  ><i class="fa fa-search-plus"></i> Quick view</a
-                >
-              </div>
-              <!-- img-wrap.// -->
-              <figcaption class="info-wrap">
-                <div class="fix-height">
-                  <a class="title">Product name goes here just for demo item</a>
-                  <div class="price-wrap mt-2">
-                    <span class="price">$1280</span>
-                  </div>
-                  <!-- price-wrap.// -->
-                </div>
-                <a class="btn btn-block btn-primary">Add to cart </a>
-              </figcaption>
-            </figure>
-          </div>
-          <!-- col.// -->
-
-          <div class="col-md-4">
-            <figure class="card card-product-grid">
-              <div class="img-wrap">
-                <img src="assets/images/items/3.jpg" />
-                <a class="btn-overlay"
-                  ><i class="fa fa-search-plus"></i> Quick view</a
-                >
-              </div>
-              <!-- img-wrap.// -->
-              <figcaption class="info-wrap">
-                <div class="fix-height">
-                  <a class="title">Product name goes here just for demo item</a>
-                  <div class="price-wrap mt-2">
-                    <span class="price">$1280</span>
-                  </div>
-                  <!-- price-wrap.// -->
-                </div>
-                <a class="btn btn-block btn-primary">Add to cart </a>
-              </figcaption>
-            </figure>
-          </div>
-          <!-- col.// -->
-
-          <div class="col-md-4">
-            <figure class="card card-product-grid">
-              <div class="img-wrap">
-                <img src="assets/images/items/4.jpg" />
-                <a class="btn-overlay"
-                  ><i class="fa fa-search-plus"></i> Quick view</a
-                >
-              </div>
-              <!-- img-wrap.// -->
-              <figcaption class="info-wrap">
-                <div class="fix-height">
-                  <a class="title">Product name goes here just for demo item</a>
-                  <div class="price-wrap mt-2">
-                    <span class="price">$1280</span>
-                  </div>
-                  <!-- price-wrap.// -->
-                </div>
-                <a class="btn btn-block btn-primary">Add to cart </a>
-              </figcaption>
-            </figure>
-          </div>
-          <!-- col.// -->
-
-          <div class="col-md-4">
-            <figure class="card card-product-grid">
-              <div class="img-wrap">
-                <img src="assets/images/items/5.jpg" />
-                <a class="btn-overlay"
-                  ><i class="fa fa-search-plus"></i> Quick view</a
-                >
-              </div>
-              <!-- img-wrap.// -->
-              <figcaption class="info-wrap">
-                <div class="fix-height">
-                  <a class="title">Product name goes here just for demo item</a>
-                  <div class="price-wrap mt-2">
-                    <span class="price">$1280</span>
-                  </div>
-                  <!-- price-wrap.// -->
-                </div>
-                <a class="btn btn-block btn-primary">Add to cart </a>
-              </figcaption>
-            </figure>
-          </div>
-          <!-- col.// -->
-
-          <div class="col-md-4">
-            <figure class="card card-product-grid">
-              <div class="img-wrap">
-                <img src="assets/images/items/6.jpg" />
-                <a class="btn-overlay"
-                  ><i class="fa fa-search-plus"></i> Quick view</a
-                >
-              </div>
-              <!-- img-wrap.// -->
-              <figcaption class="info-wrap">
-                <div class="fix-height">
-                  <a class="title">Product name goes here just for demo item</a>
-                  <div class="price-wrap mt-2">
-                    <span class="price">$1280</span>
-                  </div>
-                  <!-- price-wrap.// -->
-                </div>
-                <a class="btn btn-block btn-primary">Add to cart </a>
-              </figcaption>
-            </figure>
-          </div>
-          <!-- col.// -->
-
-          <div class="col-md-4">
-            <figure class="card card-product-grid">
-              <div class="img-wrap">
-                <img src="assets/images/items/7.jpg" />
-                <a class="btn-overlay"
-                  ><i class="fa fa-search-plus"></i> Quick view</a
-                >
-              </div>
-              <!-- img-wrap.// -->
-              <figcaption class="info-wrap">
-                <div class="fix-height">
-                  <a class="title">Product name goes here just for demo item</a>
-                  <div class="price-wrap mt-2">
-                    <span class="price">$1280</span>
-                  </div>
-                  <!-- price-wrap.// -->
-                </div>
-                <a class="btn btn-block btn-primary">Add to cart </a>
-              </figcaption>
-            </figure>
-          </div>
-          <!-- col.// -->
-
-          <div class="col-md-4">
-            <figure class="card card-product-grid">
-              <div class="img-wrap">
-                <img src="assets/images/items/1.jpg" />
-                <a class="btn-overlay"
-                  ><i class="fa fa-search-plus"></i> Quick view</a
-                >
-              </div>
-              <!-- img-wrap.// -->
-              <figcaption class="info-wrap">
-                <div class="fix-height">
-                  <a class="title">Product name goes here just for demo item</a>
-                  <div class="price-wrap mt-2">
-                    <span class="price">$1280</span>
-                  </div>
-                  <!-- price-wrap.// -->
-                </div>
-                <a class="btn btn-block btn-primary">Add to cart </a>
-              </figcaption>
-            </figure>
-          </div>
           <!-- col.// -->
         </div>
         <!-- row end.// -->

@@ -4,7 +4,7 @@ import { Products } from '../model/products';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
   ProdUrl: string;
@@ -23,7 +23,15 @@ export class ProductService {
       })
     );
   }
-
+  getAllProductByCate(catId: any) {
+    return this.http
+      .get<Products>('https://localhost:44377/api/Products?catId=' + catId)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
   addProduct(emp: Products) {
     return this.http.post<Products>(this.ProdUrl, emp).pipe(
       map((res: any) => {
@@ -33,7 +41,7 @@ export class ProductService {
   }
 
   UploadPhoto(emp: Products) {
-    return this.http.post<Products>(this.ProdUrl +'/SaveFile', emp).pipe(
+    return this.http.post<Products>(this.ProdUrl + '/SaveFile', emp).pipe(
       map((res: any) => {
         return res;
       })

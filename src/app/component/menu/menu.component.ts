@@ -3,41 +3,44 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Categories } from 'src/app/model/category';
 import { Companies } from 'src/app/model/companies';
+import { Products } from 'src/app/model/products';
 import { CategoriesService } from 'src/app/service/category.service';
 import { CompaniesService } from 'src/app/service/company.service';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
 })
-export class MenuComponent implements OnInit  {
-  cateObj: Categories = new Categories();
-  cateList: Categories[] = [];
-  empDetail!: FormGroup;
-  compObj: Companies = new Companies();
-  compList: Companies[] = [];
-
+export class MenuComponent implements OnInit {
+  empList: Categories[] = [];
+  PhotoFilePath!: string;
+  prodList: Products[] = [];
+  dataPro: any;
   constructor(
-    private formBuilder: FormBuilder,
-    private cateService: CategoriesService,
-    private compService: CompaniesService,
-    private http: HttpClient
+    private prodService: ProductService,
 
-  ) { }
+    private empService: CategoriesService
+  ) {}
 
   ngOnInit(): void {
-    this.getAllcate();
-    this.getAllcomp();
-    this.empDetail = this.formBuilder.group({
-      id: [''],
-      name: [''],
-    });
+    this.getAllCategory();
+    this.getAllProduct();
   }
-  getAllcate() {
-    this.cateService.getAllCategory().subscribe(
+  public createImgPath = (serverPath: string) => {
+    return `https://localhost:44377/Photos/${serverPath}`.replace(
+      'localhost:4200/',
+      ''
+    );
+  };
+  // public createImgPath = (serverPath: string) => {
+  //   return `assets/img/${serverPath}`;
+  // };
+  getAllCategory() {
+    this.empService.getAllCategory().subscribe(
       (res) => {
-        this.cateList = res;
+        this.empList = res;
         console.log(res);
       },
       (err) => {
@@ -45,10 +48,15 @@ export class MenuComponent implements OnInit  {
       }
     );
   }
-  getAllcomp() {
-    this.compService.getAllCompanies().subscribe(
+  // getAllcomp() {
+  //   this.compService.getAllCompanies().subscribe(
+  //     (res) => {
+  //       this.compList = res;}}
+  getAllProduct() {
+    this.prodService.getAllProduct().subscribe(
       (res) => {
-        this.compList = res;
+        this.prodList = res;
+        this.PhotoFilePath = this.prodService.PhotoUrl;
         console.log(res);
       },
       (err) => {
