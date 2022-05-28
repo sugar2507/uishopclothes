@@ -13,11 +13,18 @@ export class ProductService {
   constructor(private http: HttpClient) {
     this.ProdUrl = 'https://localhost:44377/api/Products';
     this.PhotoUrl = 'https://localhost:44377/Photos/';
-
   }
 
   getAllProduct() {
     return this.http.get<Products>(this.ProdUrl).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+
+  getProductById(id: any) {
+    return this.http.get<Products>(this.ProdUrl + `"/${id}"`).pipe(
       map((res: any) => {
         return res;
       })
@@ -47,9 +54,21 @@ export class ProductService {
       })
     );
   }
-  getDetailproduct(emp: Products){
-    return this.http.get<Products>(this.ProdUrl+'/'+emp.ID).pipe(
-    )
+  getDetailproduct(emp: number) {
+    return this.http.get<Products>(this.ProdUrl + '/' + emp).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
   }
-  
+  updateProduct(emp: Products) {
+    return this.http.put<Products>(this.ProdUrl, emp).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+  deleteProduct(emp: Products) {
+    return this.http.delete<Products>(this.ProdUrl + '/' + emp.ID);
+  }
 }

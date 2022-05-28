@@ -7,7 +7,7 @@ import { CategoriesService } from 'src/app/service/category.service';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  styleUrls: ['./category.component.css'],
 })
 export class CategoryComponent implements OnInit {
   empDetail!: FormGroup;
@@ -92,5 +92,4 @@ export class CategoryComponent implements OnInit {
       }
     );
   }
-
 }

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../../service/cart.service';
+import { getAuth } from 'firebase/auth';
 
 @Component({
   selector: 'app-header-home',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderHomeComponent implements OnInit {
   totalItemNumber: number = 0;

@@ -129,6 +129,22 @@
               id="idcategory"
             />
           </div>
+          <!-- <div class="col-md-4">
+            <label for="validationCustom03" class="form-label">Thể loại</label>
+            <select
+              (change)="onDepthChange($event)"
+              [(ngModel)]="DepId"
+              type="number"
+              class="form-control"
+              formControlName="idcategory"
+              id="idcategory"
+            >
+              <option value="null" disabled>----Select----</option>
+              <option value="cate.ID" *ngFor="let cate of CategoryList">
+                {{ cate.ID }}
+              </option>
+            </select>
+          </div> -->
           <div class="col-md-4">
             <label for="validationCustom03" class="form-label">Giới tính</label>
             <input
@@ -151,7 +167,153 @@
     </div>
   </div>
 </div>
+<div
+  class="modal fade"
+  id="editProduct"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="prodDetail" novalidate enctype="multipart/form-data">
+          <div class="col-md-12">
+            <label for="validationCustom01" class="form-label">Tên</label>
+            <input
+              formControlName="name"
+              id="name"
+              type="text"
+              class="form-control"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="validationCustom01" class="form-label">Số lượng</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="quantity"
+              id="quantity"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="validationCustom01" class="form-label">Giá Bán</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="price"
+              id="price"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="validationCustom03" class="form-label">Giá Gốc</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="oriprice"
+              id="oriprice"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="validationCustom03" class="form-label">Giá USD</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="usdprice"
+              id="usdprice"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="validationCustom03" class="form-label"
+              >Tình trạng sản phẩm</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              formControlName="hotproduct"
+              id="hotproduct"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label"
+              >Chi tiết</label
+            >
+            <textarea
+              class="form-control"
+              formControlName="description"
+              id="description"
+              rows="3"
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="formFileSm" class="form-label">Hình ảnh</label>
+            <img [src]="PhotoFilePath" style="width: 60px; height: 60px" />
+            <input
+              (change)="uploadPhoto($event)"
+              class="form-control form-control-sm"
+              id="image"
+              type="file"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="validationCustom03" class="form-label">Công ty</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="company"
+              id="company"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="validationCustom03" class="form-label">Thể loại</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="idcategory"
+              id="idcategory"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="validationCustom03" class="form-label">Giới tính</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="sex"
+              id="sex"
+            />
+          </div>
 
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              (click)="updateProduct()"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <table class="table">
   <thead class="table-dark">
     <tr>
@@ -160,15 +322,39 @@
       <th scope="col">Số lượng</th>
       <th scope="col">Giá</th>
       <th scope="col">Hình ảnh</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let prodList of prodList">
-      <th scope="row">{{ prodList.ID }}</th>
-      <td>{{ prodList.NAME }}</td>
-      <td>{{ prodList.QUANTITY }}</td>
-      <td>{{ prodList.PRICE }}</td>
-      <td>{{ prodList.IMAGE }}</td>
+    <tr *ngFor="let prod of prodList">
+      <th scope="row">{{ prod.ID }}</th>
+      <td>{{ prod.NAME }}</td>
+      <td>{{ prod.QUANTITY }}</td>
+      <td>{{ prod.PRICE }}</td>
+      <td>
+        <img
+          [src]="createImgPath(prod.IMAGE)"
+          style="width: 100px; height: 100px"
+        />
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-outline-primary me-2"
+          data-bs-toggle="modal"
+          data-bs-target="#editProduct"
+          (click)="editProduct(prod)"
+        >
+          Edit
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="deleteProduct(prod)"
+        >
+          Delete
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
