@@ -100,24 +100,24 @@
                 <!-- Shopping Item -->
                 <div class="shopping-item">
                   <div class="dropdown-cart-header">
-                    <span>2 Items</span>
+                    <span>{{totalItemNumber}} Items</span>
                     <a >View Cart</a>
                    
                   </div>
                   <ul class="shopping-list">
-                    <li>
+                    <li *ngFor="let item of products">
                       <a href="#" class="remove" title="Remove this item"
                         ><i class="fa fa-remove"></i
                       ></a>
                       <a class="cart-img" href="#"
-                        ><img src="https://via.placeholder.com/70x70" alt="#"
+                        ><img [src]="createImgPath(item.IMAGE)" alt="#"
                       /></a>
-                      <h4><a href="#">Woman Ring</a></h4>
+                      <h4><a href="#">{{item.NAME}}</a></h4>
                       <p class="quantity">
-                        1x - <span class="amount">$99.00</span>
+                        qty(1x) - <span class="amount">${{item.PRICE}}</span>
                       </p>
                     </li>
-                    <li>
+                    <!-- <li>
                       <a href="#" class="remove" title="Remove this item"
                         ><i class="fa fa-remove"></i
                       ></a>
@@ -128,12 +128,12 @@
                       <p class="quantity">
                         1x - <span class="amount">$35.00</span>
                       </p>
-                    </li>
+                    </li> -->
                   </ul>
                   <div class="bottom">
                     <div class="total">
                       <span>Total</span>
-                      <span class="total-amount">$134.00</span>
+                      <span class="total-amount">$</span>
                     </div>
                     <a href="#" class="btn animate">Checkout</a>
                   </div>

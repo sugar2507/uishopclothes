@@ -76,7 +76,7 @@
                   <td>
                     <div class="itemside">
                       <figure class="aside">
-                        <img src="assets/images/items/1.jpg" class="img-sm" style="width: 150px;" />
+                        <img  [src]="createImgPath(item.IMAGE)"class="img-sm" style="width: 150px;height: 150px;" />
                       </figure>
                       
                     </div>
@@ -102,7 +102,7 @@
                   </td>
                   <td>
                     <div class="price-wrap">
-                      <var class="price">$1156.00</var>
+                      <var class="price">$1156.00(price*quantity)</var>
                       <small class="text-muted"> ${{item.PRICE}}/each </small>
                     </div>
                    
@@ -162,7 +162,7 @@
               <a href="#" class="btn btn-primary float-md-right">
                 Make Purchase <i class="fa fa-chevron-right"></i>
               </a>
-              <a routerLink="home" class="btn btn-light">
+              <a href="/#" class="btn btn-light">
                 <i class="fa fa-chevron-left"></i> Continue shopping
               </a>
             </div>
@@ -201,11 +201,17 @@
             <!-- card-body.// -->
           </div>
           <!-- card .// -->
-          <div class="card">
-            <div class="card-body">
+          <div class="card" >
+            <div class="card-body" *ngIf="products">
               <dl class="dlist-align">
                 <dt>Total price:</dt>
-                <dd class="text-right">USD 568</dd>
+                <dd class="text-right">  <strong>{{ (totalItemNumber * products.PRICE)  }}</strong>
+                </dd>
+              </dl>
+              <dl class="dlist-align">
+                <dt>Total quantity:</dt>
+                <dd class="text-right">  <strong>{{ totalItemNumber }}</strong>
+                </dd>
               </dl>
               <dl class="dlist-align">
                 <dt>Discount:</dt>

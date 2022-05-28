@@ -17,6 +17,7 @@ export class CartService {
   addToCart(product: Products) {
     this.items.push(product);
     this.productList.next(this.items);
+    
   }
 
   getProductData() {
@@ -28,6 +29,12 @@ export class CartService {
       grandTotal += a.totalItemNumber;
     });
   }
+  // getTotalPrice() {
+  //   let grandTotal = 0;
+  //   this.items.map((a: any) => {
+  //     grandTotal +=  (a.totalItemNumber*price);
+  //   });
+  // }
   RemoveItemCart(product: any) {
     this.items.map((a: any, index: any) => {
       if (product.ID == a.ID) {
