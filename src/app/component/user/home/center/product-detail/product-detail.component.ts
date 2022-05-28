@@ -7,26 +7,30 @@ import { ProductService } from 'src/app/service/product.service';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  styleUrls: ['./product-detail.component.css'],
 })
 export class ProductDetailComponent implements OnInit {
-
-  product = new Products;
-  constructor(private route:ActivatedRoute,
-    private productService:ProductService,
-    private cartService:CartService) { }
+  product!: any;
+  id: any;
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
-    this.getRoute(this.route.snapshot.params['id']);
+    this.id = this.route.snapshot.params['id'];
+    console.log(this.id);
+    this.getRoute();
   }
-  getRoute(id:any){
-    this.productService.getDetailproduct(id).subscribe((res:any)=>{
+  getRoute() {
+    this.productService.getDetailproduct(this.id).subscribe((res: any) => {
       this.product = res;
-    });    
+      console.log(this.product);
+    });
   }
   addToCart(product: Products) {
     this.cartService.addToCart(product);
     window.alert('Your product has been added to the cart!');
   }
-
 }
