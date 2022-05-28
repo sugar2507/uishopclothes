@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Categories } from 'src/app/model/category';
 import { Products } from 'src/app/model/products';
 import { CategoriesService } from 'src/app/service/category.service';
@@ -7,11 +7,12 @@ import { ProductService } from 'src/app/service/product.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
-
   empList: Categories[] = [];
+  @Input()
+  index!: number;
   PhotoFilePath!: string;
   prodList: Products[] = [];
   dataPro: any;
@@ -49,6 +50,7 @@ export class MenuComponent implements OnInit {
   //   this.compService.getAllCompanies().subscribe(
   //     (res) => {
   //       this.compList = res;}}
+
   getAllProduct() {
     this.prodService.getAllProduct().subscribe(
       (res) => {
@@ -61,5 +63,4 @@ export class MenuComponent implements OnInit {
       }
     );
   }
-
 }

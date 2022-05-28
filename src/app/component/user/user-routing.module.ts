@@ -17,7 +17,7 @@ const routes: Routes = [
     component: MenuComponent,
     children: [
       {
-        path: 'product',
+        path: ':id',
         component: ProductListComponent,
       },
     ],

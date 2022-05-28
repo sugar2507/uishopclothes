@@ -61,6 +61,16 @@ export class ProductService {
       })
     );
   }
+  getProductByCate(id: number) {
+    return this.http
+      .get<Products>(this.ProdUrl + '/GetProductByCate/' + id)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
   updateProduct(emp: Products) {
     return this.http.put<Products>(this.ProdUrl, emp).pipe(
       map((res: any) => {
