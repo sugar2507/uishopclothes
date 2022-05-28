@@ -8,9 +8,8 @@ const routes: Routes = [
       import('./component/admin/admin.module').then((m) => m.AdminModule),
   },
   {
-    path: 'user',
-    loadChildren: () =>
-      import('./component/user/user.module').then((m) => m.UserModule),
+    path:"user",
+    loadChildren: () => import('./component/user/user.module').then(m => m.UserModule)
   },
   {
     path: ' ',

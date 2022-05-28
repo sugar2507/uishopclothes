@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from '../../../../service/cart.service';
 import { getAuth } from 'firebase/auth';
 
 @Component({
@@ -7,20 +8,11 @@ import { getAuth } from 'firebase/auth';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderHomeComponent implements OnInit {
-  constructor() {}
-
+  totalItemNumber: number = 0;
+  constructor(private cartService: CartService) {}
   ngOnInit(): void {
-    this.getUser();
-    
-  }
-  email!: string;
-
-  getUser() {
-    if (getAuth()) {
-      const auth = getAuth();
-      console.log(auth.currentUser?.email);
-      this.email = auth.currentUser?.email as string;
-      return this.email;
-    } else return (this.email = 'Anonymous');
+    this.cartService.getProductData().subscribe(res  => {
+      this.totalItemNumber = res.length;
+    });
   }
 }
