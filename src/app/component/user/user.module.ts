@@ -9,11 +9,12 @@ import { CenterComponent } from './home/center/center.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CartComponent } from './cart/cart.component';
 
 
 
 @NgModule({
-  declarations: [HeaderHomeComponent,HeaderComponent,FooterComponent,CenterComponent,HomeComponent,MenuComponent],
+  declarations: [HeaderHomeComponent,CartComponent,HeaderComponent,FooterComponent,CenterComponent,HomeComponent,MenuComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
