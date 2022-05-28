@@ -46,14 +46,14 @@ export class CenterComponent implements OnInit {
       }
     );
   }
+  public createImgPath = (serverPath: string) => {
+    return `https://localhost:44377/Photos/${serverPath}`.replace(
+      'localhost:4200/',
+      '' );
+  };
   addTocart(product: Products) {
     this.CartService.addToCart(product);
     window.alert('Your product has been added to the cart!');
   }
-  public createImgPath = (serverPath: string) => {
-    return `https://localhost:44377/Photos/${serverPath}`.replace(
-      'localhost:4200/',
-      ''
-    );
-  };
+ 
 }

@@ -68,9 +68,9 @@
                     *ngFor="let prod of prodList"
                   >
                     <div class="single-product">
-                      <div class="product-img">
+                      <div class="product-img" style="width: 275px;height: 375px;">
                         <a>
-                          <img [src]="createImgPath(prod.IMAGE)" />
+                          <img [src]="createImgPath(prod.IMAGE)" style="object-fit: fill;width: 275px;height: 375px;"/>
                           <img
                             class="hover-img"
                             src="https://via.placeholder.com/550x750"
@@ -91,9 +91,9 @@
                             >
                           </div>
                           <div class="product-action-2">
-                            <a title="Add to cart" (click)="addTocart(prod)"
-                              >Add to cart</a
-                            >
+                            <a title="Add to cart" (click)="addTocart(prod)">
+                              Add to cart
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -1774,20 +1774,22 @@
           </div>
         </div>
         <!-- Start Single List  -->
-        <div class="single-list" *ngFor="let employee of prodList">
+        <div class="single-list" *ngFor="let prod of prodList">
           <div class="row">
             <div class="col-lg-6 col-md-6 col-12">
-              <div class="list-image overlay">
-                <img src="https://via.placeholder.com/115x140" alt="#" />
-                <a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+              <div class="list-image overlay" style="width: 180px;height: 220px;">
+                <img [src]="createImgPath(prod.IMAGE)" style="object-fit: fill;width: 180px;height: 220px"/>
+                <a (click)="addTocart(prod)" class="buy"><i class="fa fa-shopping-bag"></i></a>
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-12 no-padding">
               <div class="content">
                 <h4 class="title">
-                  <a href="#">{{ employee.NAME }}</a>
+                  <a [routerLink]="['/detail/' + prod.ID]">{{
+                    prod.NAME
+                  }}</a>
                 </h4>
-                <p class="price with-discount">${{ employee.PRICE }}</p>
+                <p class="price with-discount">${{ prod.PRICE }}</p>
               </div>
             </div>
           </div>
@@ -1804,20 +1806,21 @@
           </div>
         </div>
         <!-- Start Single List  -->
-        <div class="single-list" *ngFor="let product of prodList">
+        <div class="single-list" *ngFor="let prod of prodList">
           <div class="row">
             <div class="col-lg-6 col-md-6 col-12">
-              <div class="list-image overlay">
-                <img src="https://via.placeholder.com/115x140" alt="#" />
-                <a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+              <div class="list-image overlay" style="width: 180px;height: 220px;">
+                <img [src]="createImgPath(prod.IMAGE)" style="object-fit: fill;width: 180px;height: 220px"/>
+                <a (click)="addTocart(prod)" class="buy"><i class="fa fa-shopping-bag"></i></a>
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-12 no-padding">
               <div class="content">
-                <h5 class="title">
-                  <a href="#">{{ product.NAME }}</a>
-                </h5>
-                <p class="price with-discount">${{ product.PRICE }}</p>
+                <h4 class="title">
+                  <a [routerLink]="['/detail/' + prod.ID]">{{
+                    prod.NAME
+                  }}</a>                </h4>
+                <p class="price with-discount">${{ prod.PRICE }}</p>
               </div>
             </div>
           </div>
@@ -1873,22 +1876,21 @@
         </div>
         <!-- End Single List  -->
         <!-- Start Single List  -->
-        <div class="single-list" *ngFor="let product of prodList">
+        <div class="single-list" *ngFor="let prod of prodList">
           <div class="row">
             <div class="col-lg-6 col-md-6 col-12">
-              <div class="list-image overlay">
-                <img src="https://via.placeholder.com/115x140" alt="#" />
-                <a (click)="addTocart(product)" class="buy"
-                  ><i class="fa fa-shopping-bag"></i
-                ></a>
+              <div class="list-image overlay" style="width: 180px;height: 220px;">
+                <img [src]="createImgPath(prod.IMAGE)" style="object-fit: fill;width: 180px;height: 220px"/>
+                <a (click)="addTocart(prod)" class="buy"><i class="fa fa-shopping-bag"></i></a>
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-12 no-padding">
               <div class="content">
-                <h5 class="title">
-                  <a href="#">{{ product.NAME }}</a>
-                </h5>
-                <p class="price with-discount">${{ product.PRICE }}</p>
+                <h4 class="title">
+                  <a [routerLink]="['/detail/' + prod.ID]">{{
+                    prod.NAME
+                  }}</a>                </h4>
+                <p class="price with-discount">${{ prod.PRICE }}</p>
               </div>
             </div>
           </div>
