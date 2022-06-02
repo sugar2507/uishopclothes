@@ -32,6 +32,7 @@ export class CenterComponent implements OnInit {
     //   name: [''],
     // });
     this.getAllProduct();
+    
   }
 
   getAllProduct() {

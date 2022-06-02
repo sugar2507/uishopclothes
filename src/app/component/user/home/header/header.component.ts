@@ -16,6 +16,7 @@ export class HeaderHomeComponent implements OnInit {
       this.totalItemNumber = res.length;
       this.products = res;
     });
+    this.getUser(); 
   }
   email!: string;
 
