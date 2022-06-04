@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from 'src/app/model/cart';
 import { Product } from 'src/app/model/product';
+import { Companies } from 'src/app/model/companies';
+
 import { CartService } from 'src/app/service/cart.service';
 
 @Component({
@@ -10,9 +12,13 @@ import { CartService } from 'src/app/service/cart.service';
 })
 export class CartComponent implements OnInit {
   // allProduct: any = 0;
-  totalItemNumber: number = 0;
+   totalItemNumber: number = 0;
+   totalItemPrice: number = 0.0;
 
-  products: any = [];
+  products:any=[];
+  brands:Companies[]=[];
+  ICart: CartItem[]=[];
+  
   constructor(private cartService: CartService) {}
   ngOnInit(): void {
     this.cartService.getProductData().subscribe((res) => {

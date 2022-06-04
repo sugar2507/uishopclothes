@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../model/product';
 import { BehaviorSubject } from 'rxjs';
+import { CartItem } from '../model/cart';
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   items: any = [];
   productList = new BehaviorSubject<any>([]);
-
+  // prodList:CartItem[]=[]
   /* . . . */
   constructor(private http: HttpClient) {}
 
@@ -23,7 +24,7 @@ export class CartService {
   getTotalAmount() {
     let grandTotal = 0;
     this.items.map((a: any) => {
-      grandTotal += a.totalItemNumber;
+      grandTotal = a.totalItemNumber * a.totalItemPrice;
     });
   }
   // getTotalPrice() {
@@ -36,6 +37,7 @@ export class CartService {
     this.items.map((a: any, index: any) => {
       if (product.ID == a.ID) {
         this.items.splice(index, 1);
+        a.totalItemNumber -= 1;
       }
     });
   }

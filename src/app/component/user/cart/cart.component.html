@@ -54,7 +54,9 @@
     <!-- container //  -->
   </section>
   <!-- ========================= SECTION INTRO END// ========================= -->
-  
+  <div *ngFor="let item">
+
+  </div>
   <!-- ========================= SECTION CONTENT ========================= -->
   <section class="section-content padding-y">
     <div class="container">
@@ -88,7 +90,7 @@
                       >
                       <p class="text-muted small">
                         Size: XL, Color: blue, <br />
-                        Brand: Gucci
+                        Brand:{{item.COMPANY}}  
                       </p>
                     </div>
                   </td>
@@ -159,10 +161,10 @@
             </table>
   
             <div class="card-body border-top">
-              <a href="#" class="btn btn-primary float-md-right">
+              <a [routerLink]="['checkout']" class="btn btn-primary float-md-right">
                 Make Purchase <i class="fa fa-chevron-right"></i>
               </a>
-              <a href="/#" class="btn btn-light">
+              <a href="/" class="btn btn-light">
                 <i class="fa fa-chevron-left"></i> Continue shopping
               </a>
             </div>
@@ -205,7 +207,7 @@
             <div class="card-body" *ngIf="products">
               <dl class="dlist-align">
                 <dt>Total price:</dt>
-                <dd class="text-right">  <strong>{{ (totalItemNumber * products.PRICE)  }}</strong>
+                <dd class="text-right">  <strong>{{totalItemPrice}} </strong>
                 </dd>
               </dl>
               <dl class="dlist-align">
@@ -213,13 +215,10 @@
                 <dd class="text-right">  <strong>{{ totalItemNumber }}</strong>
                 </dd>
               </dl>
-              <dl class="dlist-align">
-                <dt>Discount:</dt>
-                <dd class="text-right">USD 658</dd>
-              </dl>
+             
               <dl class="dlist-align">
                 <dt>Total:</dt>
-                <dd class="text-right h5"><strong>$1,650</strong></dd>
+                <dd class="text-right h5"><strong>${{totalItemPrice}}</strong></dd>
               </dl>
               <hr />
               <p class="text-center mb-3">

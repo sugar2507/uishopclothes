@@ -13,6 +13,7 @@ import { CartComponent } from './cart/cart.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ProductDetailComponent } from './home/center/product-detail/product-detail.component';
 import { ProductListComponent } from './menu/product-list/product-list.component';
+import { CheckoutComponent } from './cart/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,10 @@ import { ProductListComponent } from './menu/product-list/product-list.component
     HomeComponent,
     MenuComponent,
     ProductDetailComponent,
+    CheckoutComponent,
+    CartComponent,
     ProductListComponent,
-    CartComponent
+    CartComponent,
   ],
   imports: [
     CommonModule,
