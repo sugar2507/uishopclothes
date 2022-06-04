@@ -1,23 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Products } from '../model/products';
+import { Product } from '../model/product';
 import { BehaviorSubject } from 'rxjs';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
   items: any = [];
   productList = new BehaviorSubject<any>([]);
 
   /* . . . */
-  constructor(
-      private http:HttpClient
-  ){}
+  constructor(private http: HttpClient) {}
 
-  addToCart(product: Products) {
+  addToCart(product: Product) {
     this.items.push(product);
     this.productList.next(this.items);
-    
   }
 
   getProductData() {
@@ -47,4 +44,4 @@ export class CartService {
     return this.items;
   }
   /* . . . */
-  }
+}

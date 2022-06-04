@@ -20,11 +20,10 @@
             <ul class="list-main">
               <li><i class="ti-location-pin"></i> Store location</li>
               <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
-              <li><i class="ti-user"></i> <a href="#">My account</a></li>
               <li>
-                <i class="ti-power-off"></i><a href="#"> {{ this.email }}</a>
-              
+                <i class="ti-user"></i> <a href="#">{{ this.email }}</a>
               </li>
+              <li><i class="ti-power-off"></i><a href="#"> </a></li>
             </ul>
           </div>
           <!-- End Top Right -->
@@ -95,14 +94,14 @@
               </div>
               <div class="sinlge-bar shopping">
                 <a routerLink="/cart" class="single-icon"
-                  ><i class="ti-bag"></i> <span class="total-count">{{totalItemNumber}}</span></a
-                  >
+                  ><i class="ti-bag"></i>
+                  <span class="total-count">{{ totalItemNumber }}</span></a
+                >
                 <!-- Shopping Item -->
                 <div class="shopping-item">
                   <div class="dropdown-cart-header">
-                    <span>{{totalItemNumber}} Items</span>
-                    <a >View Cart</a>
-                   
+                    <span>{{ totalItemNumber }} Items</span>
+                    <a>View Cart</a>
                   </div>
                   <ul class="shopping-list">
                     <li *ngFor="let item of products">
@@ -112,9 +111,11 @@
                       <a class="cart-img" href="#"
                         ><img [src]="createImgPath(item.IMAGE)" alt="#"
                       /></a>
-                      <h4><a href="#">{{item.NAME}}</a></h4>
+                      <h4>
+                        <a href="#">{{ item.NAME }}</a>
+                      </h4>
                       <p class="quantity">
-                        qty(1x) - <span class="amount">${{item.PRICE}}</span>
+                        qty(1x) - <span class="amount">${{ item.PRICE }}</span>
                       </p>
                     </li>
                     <!-- <li>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Products } from 'src/app/model/products';
+import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
 import { CategoriesService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
@@ -14,8 +14,8 @@ import { ProductService } from 'src/app/service/product.service';
 export class CenterComponent implements OnInit {
   @Input()
   index!: number;
-  empObj: Products = new Products();
-  prodList: Products[] = [];
+  empObj: Product = new Product();
+  prodList: Product[] = [];
   empDetail!: FormGroup;
   PhotoFilePath!: string;
   constructor(
@@ -51,7 +51,7 @@ export class CenterComponent implements OnInit {
       'localhost:4200/',
       '' );
   };
-  addTocart(product: Products) {
+  addTocart(product: Product) {
     this.CartService.addToCart(product);
     window.alert('Your product has been added to the cart!');
   }

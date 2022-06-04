@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Products } from '../model/products';
+import { Product } from '../model/product';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class ProductService {
   }
 
   getAllProduct() {
-    return this.http.get<Products>(this.ProdUrl).pipe(
+    return this.http.get<Product>(this.ProdUrl).pipe(
       map((res: any) => {
         return res;
       })
@@ -24,61 +24,31 @@ export class ProductService {
   }
 
   getProductById(id: any) {
-    return this.http.get<Products>(this.ProdUrl + `"/${id}"`).pipe(
-      map((res: any) => {
-        return res;
-      })
-    );
+    return this.http.get<Product>(this.ProdUrl + `"/${id}"`);
   }
   getAllProductByCate(catId: any) {
-    return this.http
-      .get<Products>('https://localhost:44377/api/Products?catId=' + catId)
-      .pipe(
-        map((res: any) => {
-          return res;
-        })
-      );
-  }
-  addProduct(emp: Products) {
-    return this.http.post<Products>(this.ProdUrl, emp).pipe(
-      map((res: any) => {
-        return res;
-      })
+    return this.http.get<Product>(
+      'https://localhost:44377/api/Products?catId=' + catId
     );
+  }
+  addProduct(emp: Product) {
+    return this.http.post<Product>(this.ProdUrl, emp);
   }
 
-  UploadPhoto(emp: Products) {
-    return this.http.post<Products>(this.ProdUrl + '/SaveFile', emp).pipe(
-      map((res: any) => {
-        return res;
-      })
-    );
+  UploadPhoto(emp: Product) {
+    return this.http.post<Product>(this.ProdUrl + '/SaveFile', emp);
   }
   getDetailproduct(emp: number) {
-    return this.http.get<Products>(this.ProdUrl + '/' + emp).pipe(
-      map((res: any) => {
-        return res;
-      })
-    );
+    return this.http.get<Product>(this.ProdUrl + '/' + emp);
   }
   getProductByCate(id: number) {
-    return this.http
-      .get<Products>(this.ProdUrl + '/GetProductByCate/' + id)
-      .pipe(
-        map((res: any) => {
-          return res;
-        })
-      );
+    return this.http.get<Product[]>(this.ProdUrl + '/GetProductByCate/' + id);
   }
 
-  updateProduct(emp: Products) {
-    return this.http.put<Products>(this.ProdUrl, emp).pipe(
-      map((res: any) => {
-        return res;
-      })
-    );
+  updateProduct(emp: Product) {
+    return this.http.put<Product>(this.ProdUrl, emp);
   }
-  deleteProduct(emp: Products) {
-    return this.http.delete<Products>(this.ProdUrl + '/' + emp.ID);
+  deleteProduct(emp: Product) {
+    return this.http.delete<Product>(this.ProdUrl + '/' + emp.ID);
   }
 }

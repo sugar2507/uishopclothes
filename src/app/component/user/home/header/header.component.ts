@@ -9,13 +9,15 @@ import { getAuth } from 'firebase/auth';
 })
 export class HeaderHomeComponent implements OnInit {
   totalItemNumber: number = 0;
-  products:any=[];
+  products: any = [];
+
   constructor(private cartService: CartService) {}
   ngOnInit(): void {
-    this.cartService.getProductData().subscribe(res  => {
+    this.cartService.getProductData().subscribe((res) => {
       this.totalItemNumber = res.length;
       this.products = res;
     });
+    this.getUser();
   }
   email!: string;
 
@@ -27,11 +29,11 @@ export class HeaderHomeComponent implements OnInit {
       return this.email;
     } else return (this.email = 'Anonymous');
   }
-  
-public createImgPath = (serverPath: string) => {
-  return `https://localhost:44377/Photos/${serverPath}`.replace(
-    'localhost:4200/',
-    '' );
-};
 
+  public createImgPath = (serverPath: string) => {
+    return `https://localhost:44377/Photos/${serverPath}`.replace(
+      'localhost:4200/',
+      ''
+    );
+  };
 }

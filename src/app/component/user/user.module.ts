@@ -24,6 +24,7 @@ import { ProductListComponent } from './menu/product-list/product-list.component
     MenuComponent,
     ProductDetailComponent,
     ProductListComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,

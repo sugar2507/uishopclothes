@@ -1,8 +1,8 @@
 import { getLocaleCurrencyCode } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Categories } from 'src/app/model/category';
-import { Products } from 'src/app/model/products';
+import { Product } from 'src/app/model/product';
 import { CategoriesService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -15,8 +15,9 @@ export class ProductListComponent implements OnInit {
   PhotoFilePath!: string;
   dataPro: any;
   catId: any;
-  prodList: Products[] = [];
+  prodList: Product[] = [];
   empList: Categories[] = [];
+  category!: Categories;
   constructor(
     private prodService: ProductService,
     private route: ActivatedRoute,
@@ -24,12 +25,22 @@ export class ProductListComponent implements OnInit {
     private empService: CategoriesService
   ) {}
   ngOnInit(): void {
-    this.getAllCategory();
-    this.route.firstChild?.paramMap.subscribe((params: any) => {
-      this.catId = params.get('id');
-      console.log('ID: ', this.catId);
-      this.getAllCategory();
-      this.getRoute();
+    this.catId = this.route.snapshot.params['id'];
+    console.log('ID: ', this.catId);
+
+    this.route.params.subscribe((params: Params) => {
+      if (
+        this.route.snapshot.params['id'] == 'all' ||
+        !this.route.snapshot.params['id']
+      ) {
+        this.getAllCategory();
+        this.getAllProduct();
+      } else {
+        this.catId = params['id'];
+        console.log('ID: ', this.catId);
+        this.getAllCategory();
+        this.getRoute();
+      }
     });
 
     // this.getProductCatId(this.catId);
