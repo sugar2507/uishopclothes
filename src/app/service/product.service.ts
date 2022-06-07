@@ -23,14 +23,14 @@ export class ProductService {
     );
   }
 
-  getProductById(id: any) {
-    return this.http.get<Product>(this.ProdUrl + `"/${id}"`);
-  }
-  getAllProductByCate(catId: any) {
-    return this.http.get<Product>(
-      'https://localhost:44377/api/Products?catId=' + catId
-    );
-  }
+  // getProductById(id: any) {
+  //   return this.http.get<Product>(this.ProdUrl + `"/${id}"`);
+  // }
+  // getAllProductByCate(catId: any) {
+  //   return this.http.get<Product>(
+  //     'https://localhost:44377/api/Products?catId=' + catId
+  //   );
+  // }
   addProduct(emp: Product) {
     return this.http.post<Product>(this.ProdUrl, emp);
   }
