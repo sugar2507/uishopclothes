@@ -14,6 +14,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ProductDetailComponent } from './home/center/product-detail/product-detail.component';
 import { ProductListComponent } from './menu/product-list/product-list.component';
 import { CheckoutComponent } from './cart/checkout/checkout.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CheckoutComponent } from './cart/checkout/checkout.component';
   imports: [
     CommonModule,
     UserRoutingModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
   ],

@@ -6,7 +6,8 @@ import { CartItem } from 'src/app/model/cart';
 
 import { CartService } from 'src/app/service/cart.service';
 import { CheckoutService } from 'src/app/service/checkout.service';
-import { De_BillService } from 'src/app/service/de_bill.service';
+import { De_OrderService } from 'src/app/service/de_order.service';
+
 
 @Component({
   selector: 'app-checkout',
@@ -23,6 +24,7 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private cartService: CartService, 
     private checkoutService: CheckoutService,
+  
     private formBuilder: FormBuilder,
 
     ) {}

@@ -111,8 +111,16 @@
               type="file"
             />
           </div>
-
           <div class="col-md-4">
+            <label for="validationCustom03" class="form-label">Công ty</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="company"
+              id="company"
+            />
+          </div>
+          <!-- <div class="col-md-4">
             <label for="validationCustom03" class="form-label">Công ty</label>
             <select
               (ngModelChange)="onDepthChange($event.target.value)"
@@ -125,8 +133,8 @@
                 {{ comp.NAME }}
               </option>
             </select>
-          </div>
-          <!-- <div class="col-md-4">
+          </div> -->
+          <div class="col-md-4">
             <label for="validationCustom03" class="form-label">Thể loại</label>
             <input
               type="number"
@@ -134,8 +142,8 @@
               formControlName="idcategory"
               id="idcategory"
             />
-          </div> -->
-          <div class="col-md-4">
+          </div>
+          <!-- <div class="col-md-4">
             <label for="validationCustom03" class="form-label">Thể loại</label>
             <select
               (select)="onDepthChange($event)"
@@ -148,8 +156,8 @@
                 {{ cate.NAME }}
               </option>
             </select>
-          </div>
-          <div class="col-md-4">
+          </div> -->
+          <!-- <div class="col-md-4">
             <label for="validationCustom03" class="form-label">Giới tính</label>
             <select class="form-control" formControlName="sex" id="sex">
               <option disabled>----Select----</option>
@@ -157,16 +165,16 @@
                 {{ sex.NAME }}
               </option>
             </select>
-          </div>
-          <!-- <div class="col-md-4">
-            <label for="validationCustom03" class="form-label"></label>
+          </div> -->
+          <div class="col-md-4">
+            <label for="validationCustom03" class="form-label">Giới tính</label>
             <input
               type="number"
               class="form-control"
               formControlName="sex"
               id="sex"
             />
-          </div> -->
+          </div>
         </form>
       </div>
       <div class="modal-footer">
