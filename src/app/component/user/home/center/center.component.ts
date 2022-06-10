@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { CartItem } from 'src/app/model/cart';
 import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
 import { CategoriesService } from 'src/app/service/category.service';
@@ -14,8 +15,12 @@ import { ProductService } from 'src/app/service/product.service';
 export class CenterComponent implements OnInit {
   @Input()
   index!: number;
+  t: any = 1;
   empObj: Product = new Product();
   prodList: Product[] = [];
+  cart: CartItem[] = [];
+  products: any = [];
+
   empDetail!: FormGroup;
   PhotoFilePath!: string;
   constructor(
@@ -32,7 +37,12 @@ export class CenterComponent implements OnInit {
     //   name: [''],
     // });
     this.getAllProduct();
-    
+  }
+  addToCart(product: Product) {
+    this.CartService.addToCart(product);
+  
+    // this.cart.qty=1;
+    window.alert('Your product has been added to the cart!');
   }
 
   getAllProduct() {
@@ -40,7 +50,6 @@ export class CenterComponent implements OnInit {
       (res) => {
         this.prodList = res;
         this.PhotoFilePath = this.prodService.PhotoUrl;
-        console.log(res);
       },
       (err) => {
         console.log('error while fetching data');
@@ -50,7 +59,8 @@ export class CenterComponent implements OnInit {
   public createImgPath = (serverPath: string) => {
     return `https://localhost:44377/Photos/${serverPath}`.replace(
       'localhost:4200/',
-      '' );
+      ''
+    );
   };
   addTocart(product: Product) {
     this.CartService.addToCart(product);

@@ -111,14 +111,20 @@
               type="file"
             />
           </div>
+
           <div class="col-md-4">
             <label for="validationCustom03" class="form-label">Công ty</label>
-            <input
-              type="number"
+            <select
+              (ngModelChange)="onDepthChange($event.target.value)"
               class="form-control"
               formControlName="company"
               id="company"
-            />
+            >
+              <option disabled>----Select----</option>
+              <option *ngFor="let comp of CompanyList" value="comp.NAME">
+                {{ comp.NAME }}
+              </option>
+            </select>
           </div>
           <!-- <div class="col-md-4">
             <label for="validationCustom03" class="form-label">Thể loại</label>
@@ -132,8 +138,7 @@
           <div class="col-md-4">
             <label for="validationCustom03" class="form-label">Thể loại</label>
             <select
-              #myselected
-              (change)="onDepthChange(myselected.value)"
+              (select)="onDepthChange($event)"
               class="form-control"
               formControlName="idcategory"
               id="idcategory"
@@ -146,13 +151,22 @@
           </div>
           <div class="col-md-4">
             <label for="validationCustom03" class="form-label">Giới tính</label>
+            <select class="form-control" formControlName="sex" id="sex">
+              <option disabled>----Select----</option>
+              <option *ngFor="let sex of SexList" value="{{ sex.ID }}">
+                {{ sex.NAME }}
+              </option>
+            </select>
+          </div>
+          <!-- <div class="col-md-4">
+            <label for="validationCustom03" class="form-label"></label>
             <input
               type="number"
               class="form-control"
               formControlName="sex"
               id="sex"
             />
-          </div>
+          </div> -->
         </form>
       </div>
       <div class="modal-footer">

@@ -10,6 +10,7 @@ import { Order } from '../model/order';
 })
 export class CartService {
   items: any = [];
+
   productList = new BehaviorSubject<any>([]);
   ProdUrl: string;
   // prodList:CartItem[]=[]
@@ -17,7 +18,6 @@ export class CartService {
   constructor(private http: HttpClient) {
     this.ProdUrl = 'https://localhost:44377/api/Products';
   }
-
   addToCart(product: Product) {
     this.items.push(product);
     this.productList.next(this.items);
@@ -32,12 +32,6 @@ export class CartService {
       grandTotal = a.totalItemNumber * a.totalItemPrice;
     });
   }
-  // getTotalPrice() {
-  //   let grandTotal = 0;
-  //   this.items.map((a: any) => {
-  //     grandTotal +=  (a.totalItemNumber*price);
-  //   });
-  // }
   RemoveItemCart(product: any) {
     this.items.map((a: any, index: any) => {
       if (product.ID == a.ID) {

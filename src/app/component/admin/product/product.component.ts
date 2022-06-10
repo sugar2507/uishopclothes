@@ -3,8 +3,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Categories } from 'src/app/model/category';
 import { Product } from 'src/app/model/product';
+import { Sex } from 'src/app/model/sex';
 import { CategoriesService } from 'src/app/service/category.service';
+import { CompaniesService } from 'src/app/service/company.service';
 import { ProductService } from 'src/app/service/product.service';
+import { SexService } from 'src/app/service/sex.service';
+import { Companies } from './../../../model/companies';
 
 @Component({
   selector: 'app-product',
@@ -20,22 +24,26 @@ export class ProductComponent implements OnInit {
   prodObj: Product = new Product();
   prodList: Product[] = [];
 
-  selectedValue: string = '';
   // PhotoPath!: String;
   pro!: Product;
   constructor(
     private formBuilder: FormBuilder,
     private prodService: ProductService,
-    private empService: CategoriesService,
+    private cateService: CategoriesService,
+    private companiesService: CompaniesService,
+    private sexService: SexService,
     private http: HttpClient
   ) {}
-
+  myselected: any;
   CategoryList: Categories[] = [];
-
+  CompanyList: Companies[] = [];
+  SexList: Sex[] = [];
   @Input()
   PhotoFilePath: any;
   PhotoProduct: any;
   ngOnInit(): void {
+    this.getAllSex();
+    this.getAllCompanies();
     this.getAllCategory();
     this.getAllProduct();
     this.prodDetail = this.formBuilder.group({
@@ -68,9 +76,30 @@ export class ProductComponent implements OnInit {
     this.PhotoProduct = 'anonymous.png';
     this.PhotoFilePath = 'https://localhost:44377/Photos/' + this.PhotoProduct;
   }
-
+  getAllSex() {
+    this.sexService.getAllSex().subscribe(
+      (res) => {
+        this.SexList = res;
+        console.log(this.SexList);
+      },
+      (err) => {
+        console.log('error while fetching data');
+      }
+    );
+  }
+  getAllCompanies() {
+    this.companiesService.getAllCompanies().subscribe(
+      (res) => {
+        this.CompanyList = res;
+        console.log(this.CompanyList);
+      },
+      (err) => {
+        console.log('error while fetching data');
+      }
+    );
+  }
   getAllCategory() {
-    this.empService.getAllCategory().subscribe(
+    this.cateService.getAllCategory().subscribe(
       (res) => {
         this.CategoryList = res;
         console.log(this.CategoryList);
@@ -102,11 +131,12 @@ export class ProductComponent implements OnInit {
       }
     );
   }
-
-  onDepthChange(e: string): void {
+  public onDepthChangeSex(e: any): void {
+    this.prodCreate.value.sex = e;
     console.log('selected :', e);
-    this.selectedValue = e;
-    console.log('selected :', this.selectedValue);
+  }
+  public onDepthChange(e: any): void {
+    console.log('selected company :', e.value);
   }
 
   addProduct() {
@@ -127,7 +157,7 @@ export class ProductComponent implements OnInit {
     this.prodObj.SEX = this.prodCreate.value.sex;
     this.prodObj.DESCRIPTION = this.prodCreate.value.description;
     this.prodObj.IDCATEGORY = this.prodCreate.value.idcategory;
-    console.log(this.prodCreate.value.depId);
+    console.log(this.prodCreate.value.idcategory);
     this.PhotoFilePath =
       this.prodService.PhotoUrl + this.prodCreate.value.image;
 
