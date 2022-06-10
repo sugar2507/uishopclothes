@@ -1,4 +1,4 @@
-import { Products } from './products';
+import { Product } from './product';
 
 export class CartItem {
   productId: any;
@@ -7,7 +7,7 @@ export class CartItem {
   price: any;
   img:any;
 
-  constructor( product: Products, qty = 1) {
+  constructor( product: Product, qty = 1) {
     
     this.productId = product.ID;
     this.productName = product.NAME;

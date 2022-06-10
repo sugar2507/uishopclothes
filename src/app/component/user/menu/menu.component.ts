@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Categories } from 'src/app/model/category';
-import { Products } from 'src/app/model/products';
+import { Product } from 'src/app/model/product';
 import { CategoriesService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
   @Input()
   index!: number;
   PhotoFilePath!: string;
-  prodList: Products[] = [];
+  prodList: Product[] = [];
   dataPro: any;
   constructor(
     private prodService: ProductService,

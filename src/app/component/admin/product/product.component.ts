@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Categories } from 'src/app/model/category';
-import { Products } from 'src/app/model/products';
+import { Product } from 'src/app/model/product';
 import { CategoriesService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -17,10 +17,12 @@ export class ProductComponent implements OnInit {
   @Output() public onUploadFinished = new EventEmitter();
   prodDetail!: FormGroup;
   prodCreate!: FormGroup;
-  prodObj: Products = new Products();
-  prodList: Products[] = [];
+  prodObj: Product = new Product();
+  prodList: Product[] = [];
+
+  selectedValue: string = '';
   // PhotoPath!: String;
-  pro!: Products;
+  pro!: Product;
   constructor(
     private formBuilder: FormBuilder,
     private prodService: ProductService,
@@ -28,9 +30,8 @@ export class ProductComponent implements OnInit {
     private http: HttpClient
   ) {}
 
-  public DepId!: string;
   CategoryList: Categories[] = [];
-  selectedDay!: string;
+
   @Input()
   PhotoFilePath: any;
   PhotoProduct: any;
@@ -62,7 +63,7 @@ export class ProductComponent implements OnInit {
       hotproduct: [''],
       sex: [''],
       description: [''],
-      idcategory: null,
+      idcategory: [''],
     });
     this.PhotoProduct = 'anonymous.png';
     this.PhotoFilePath = 'https://localhost:44377/Photos/' + this.PhotoProduct;
@@ -101,13 +102,13 @@ export class ProductComponent implements OnInit {
       }
     );
   }
-  onDepthChange(e: any) {
-    this.prodCreate.controls['idcategory'].setValue(e.target.value);
-    console.log(
-      'ssssssss{0}',
-      this.prodCreate.controls['idcategory'].setValue(e.target.value)
-    );
+
+  onDepthChange(e: string): void {
+    console.log('selected :', e);
+    this.selectedValue = e;
+    console.log('selected :', this.selectedValue);
   }
+
   addProduct() {
     console.log(this.prodCreate);
 
@@ -142,7 +143,7 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  editProduct(product: Products) {
+  editProduct(product: Product) {
     this.prodDetail.controls['id'].setValue(product.ID);
     //var imageById = this.getData(product);
     this.prodDetail.controls['name'].setValue(product.NAME);
@@ -159,7 +160,7 @@ export class ProductComponent implements OnInit {
     this.PhotoFilePath =
       this.prodService.PhotoUrl + this.prodDetail.value.image;
 
-    console.log(this.prodDetail.controls['price'].setValue(product.PRICE));
+    console.log(this.prodDetail.controls['image'].setValue(product.IMAGE));
   }
   updateProduct() {
     this.prodObj.ID = this.prodDetail.value.id;
@@ -177,11 +178,12 @@ export class ProductComponent implements OnInit {
     this.prodObj.SEX = this.prodDetail.value.sex;
     this.prodObj.DESCRIPTION = this.prodDetail.value.description;
     this.prodObj.IDCATEGORY = this.prodDetail.value.idcategory;
-    // this.PhotoFilePath =
-    //   this.prodService.PhotoUrl + this.prodDetail.value.image;
+    this.PhotoFilePath =
+      this.prodService.PhotoUrl + this.prodDetail.value.image;
 
     console.log(this.prodObj.NAME);
     console.log(this.prodObj);
+    console.log(this.PhotoFilePath);
     this.prodService.updateProduct(this.prodObj).subscribe(
       (res) => {
         console.log(res);
@@ -195,7 +197,7 @@ export class ProductComponent implements OnInit {
       }
     );
   }
-  deleteProduct(emp: Products) {
+  deleteProduct(emp: Product) {
     this.prodService.deleteProduct(emp).subscribe(
       (res) => {
         console.log(res);

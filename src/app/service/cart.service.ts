@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Products } from '../model/products';
+import { Product } from '../model/product';
 import { BehaviorSubject } from 'rxjs';
 import { CartItem } from '../model/cart';
 import { De_Bill } from '../model/de_bill';
@@ -20,7 +20,7 @@ export class CartService {
   addDeBill(Pro: De_Bill) {
     return this.http.post<De_Bill>(this.addDBillUrl, Pro);
   }
-  addToCart(product: Products) {
+  addToCart(product: Product) {
     this.items.push(product);
     this.productList.next(this.items);
   }

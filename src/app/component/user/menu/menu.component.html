@@ -35,8 +35,11 @@
                 </form>
 
                 <ul class="list-menu">
-                  <li *ngFor="let empList of empList">
-                    <a [routerLink]="[empList.ID]">{{ empList.NAME }} </a>
+                  <li>
+                    <a routerLink="all">Tat ca</a>
+                  </li>
+                  <li *ngFor="let emp of empList">
+                    <a [routerLink]="[emp.ID]">{{ emp.NAME }} </a>
                   </li>
                 </ul>
               </div>
@@ -245,7 +248,9 @@
           </div>
         </header>
         <!-- sect-heading -->
-        <app-product-list></app-product-list>
+
+        <router-outlet></router-outlet>
+
         <!-- row end.// -->
 
         <nav class="mt-4" aria-label="Page navigation sample">

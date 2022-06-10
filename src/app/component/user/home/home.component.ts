@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Products } from 'src/app/model/products';
+import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -9,11 +9,7 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
   constructor() {}
 
-  ngOnInit(): void {
-   
-  }
- 
+  ngOnInit(): void {}
 }

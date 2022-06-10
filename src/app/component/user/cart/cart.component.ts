@@ -2,9 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CartItem } from 'src/app/model/cart';
+import { Product } from 'src/app/model/product';
 import { Companies } from 'src/app/model/companies';
-import { De_Bill } from 'src/app/model/de_bill';
-import { Products } from 'src/app/model/products';
 import { CartService } from 'src/app/service/cart.service';
 
 @Component({
@@ -18,8 +17,6 @@ export class CartComponent implements OnInit {
   products: any = [];
   ICart: CartItem[] = [];
   proForm!: FormGroup;
-  proObj: De_Bill = new De_Bill();
-  proList: De_Bill[] = [];
   constructor(
     private cartService: CartService,
     private formBuilder: FormBuilder,
@@ -49,13 +46,13 @@ export class CartComponent implements OnInit {
     });
   }
   //chua co xong - phai sua lai db
-  addCategory() {
-    console.log(this.proForm);
-    this.proObj.IDBILL = this.proForm.value.id;
-    this.proObj.IDPRODUCT = this.proForm.value.name;
+  // addCategory() {
+  //   console.log(this.proForm);
+  //   this.proObj.IDBILL = this.proForm.value.id;
+  //   this.proObj.IDPRODUCT = this.proForm.value.name;
 
-    this.cartService.addDeBill(this.proObj)
-  }
+  //   this.cartService.addDeBill(this.proObj)
+  // }
      
   removeProduct(item: any) {
     this.cartService.RemoveItemCart(item);

@@ -120,7 +120,7 @@
               id="company"
             />
           </div>
-          <div class="col-md-4">
+          <!-- <div class="col-md-4">
             <label for="validationCustom03" class="form-label">Thể loại</label>
             <input
               type="number"
@@ -128,23 +128,22 @@
               formControlName="idcategory"
               id="idcategory"
             />
-          </div>
-          <!-- <div class="col-md-4">
+          </div> -->
+          <div class="col-md-4">
             <label for="validationCustom03" class="form-label">Thể loại</label>
             <select
-              (change)="onDepthChange($event)"
-              [(ngModel)]="DepId"
-              type="number"
+              #myselected
+              (change)="onDepthChange(myselected.value)"
               class="form-control"
               formControlName="idcategory"
               id="idcategory"
             >
-              <option value="null" disabled>----Select----</option>
-              <option value="cate.ID" *ngFor="let cate of CategoryList">
-                {{ cate.ID }}
+              <option disabled>----Select----</option>
+              <option *ngFor="let cate of CategoryList" value="{{ cate.ID }}">
+                {{ cate.NAME }}
               </option>
             </select>
-          </div> -->
+          </div>
           <div class="col-md-4">
             <label for="validationCustom03" class="form-label">Giới tính</label>
             <input

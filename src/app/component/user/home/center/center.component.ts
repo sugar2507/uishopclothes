@@ -62,37 +62,9 @@ export class CenterComponent implements OnInit {
       ''
     );
   };
-  // addTocart(product: Products, t = 0) {
-  //   this.CartService.getProductData().subscribe((res) => {
-  //     this.products = res;
-  //     this.cart = this.products;
-  //     if (this.products.length == 0) {
-  //       this.CartService.addToCart(product);
-  //     } 
-  //     else {
-  //       for (var i=0;i<this.products.length;i++) {
-  //         if (product.ID == this.cart[i].productId && this.cart[i].qty>=1) {
-  //           this.t += this.cart[i].qty;
-  //           this.cart[i].qty = this.t;
-  //           console.log('cartitem qty', this.cart[i].qty);
-  //           console.log(this.t);
-  //         } 
-  //         else {
-  //           this.CartService.addToCart(product);
-  //           this.cart[i].productId = this.products[i].ID;
-  //           this.cart[i].price = this.products[i].PRICE;
-  //           this.cart[i].productName = this.products[i].NAME;
-  //           this.cart[i].qty = 1;
-  //           console.log('prod_id', this.products[i].ID);
-
-  //           console.log('cartitem Name', this.cart[i].productName);
-  //         }
-  //         console.log('break')
-  //         break;
-  //       }
-  //     }
-  //     //  this.CartService.RemoveItemCart(this.cart);
-  //   });
-  //   console.log('cart', this.cart);
-  // }
+  addTocart(product: Products) {
+    this.CartService.addToCart(product);
+    window.alert('Your product has been added to the cart!');
+  }
+ 
 }
