@@ -33,4 +33,11 @@ export class ProductDetailComponent implements OnInit {
     this.cartService.addToCart(product);
     window.alert('Your product has been added to the cart!');
   }
+  
+  public createImgPath = (serverPath: string) => {
+    return `https://localhost:44377/Photos/${serverPath}`.replace(
+      'localhost:4200/',
+      ''
+    );
+  };
 }

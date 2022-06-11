@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Categories } from 'src/app/model/category';
 import { Product } from 'src/app/model/product';
+import { CartService } from 'src/app/service/cart.service';
 import { CategoriesService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -22,6 +23,7 @@ export class ProductListComponent implements OnInit {
     private prodService: ProductService,
     private route: ActivatedRoute,
     private productService: ProductService,
+    private cartService: CartService,
     private empService: CategoriesService
   ) {}
   ngOnInit(): void {
@@ -46,7 +48,10 @@ export class ProductListComponent implements OnInit {
     // this.getProductCatId(this.catId);
     console.log(this.catId);
   }
-
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+    window.alert('Your product has been added to the cart!');
+  }
   public createImgPath = (serverPath: string) => {
     return `https://localhost:44377/Photos/${serverPath}`.replace(
       'localhost:4200/',
