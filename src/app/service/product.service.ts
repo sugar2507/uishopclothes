@@ -44,7 +44,12 @@ export class ProductService {
   getProductByCate(id: number) {
     return this.http.get<Product[]>(this.ProdUrl + '/GetProductByCate/' + id);
   }
-
+  getProductByBrand(id: number) {
+    return this.http.get<Product[]>(this.ProdUrl + '/GetProductByBranch/' + id);
+  }
+  getProductBySex(id: number) {
+    return this.http.get<Product[]>(this.ProdUrl + '/GetProductBySex/' + id);
+  }
   updateProduct(emp: Product) {
     return this.http.put<Product>(this.ProdUrl, emp);
   }

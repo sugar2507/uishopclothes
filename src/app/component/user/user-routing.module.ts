@@ -26,6 +26,18 @@ const routes: Routes = [
         path: ':id',
         component: ProductListComponent,
       },
+      {
+        path: 'cate/:id',
+        component: ProductListComponent,
+      },
+      {
+        path: 'brand/:id',
+        component: ProductListComponent,
+      },
+      {
+        path: 'sex/:id',
+        component: ProductListComponent,
+      },
     ],
   },
 
@@ -34,10 +46,10 @@ const routes: Routes = [
     component: CartComponent,
   },
   {
-    path:'cart/checkout',
+    path: 'cart/checkout',
     component: CheckoutComponent,
   },
-  
+
   {
     path: 'detail/:id',
     component: ProductDetailComponent,

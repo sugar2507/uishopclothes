@@ -6,7 +6,8 @@ import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
 import { CategoriesService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
-
+import { CompaniesService } from './../../../../service/company.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -16,18 +17,26 @@ export class ProductListComponent implements OnInit {
   PhotoFilePath!: string;
   dataPro: any;
   catId: any;
+  brandId: any;
+  sexId: any;
   prodList: Product[] = [];
   empList: Categories[] = [];
+
   category!: Categories;
   constructor(
     private prodService: ProductService,
     private route: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
-    private empService: CategoriesService
-  ) {}
+    private empService: CategoriesService,
+    private Location: Location
+  ) {
+    console.log(this.Location.path());
+  }
   ngOnInit(): void {
     this.catId = this.route.snapshot.params['id'];
+    this.brandId = this.route.snapshot.params['id'];
+    this.sexId = this.route.snapshot.params['id'];
     console.log('ID: ', this.catId);
 
     this.route.params.subscribe((params: Params) => {
@@ -39,6 +48,8 @@ export class ProductListComponent implements OnInit {
         this.getAllProduct();
       } else {
         this.catId = params['id'];
+        this.brandId = this.route.snapshot.params['id'];
+        this.sexId = this.route.snapshot.params['id'];
         console.log('ID: ', this.catId);
         this.getAllCategory();
         this.getRoute();
@@ -59,16 +70,40 @@ export class ProductListComponent implements OnInit {
     );
   };
   getRoute() {
-    this.productService.getProductByCate(this.catId).subscribe(
-      (res: any) => {
-        console.log(this.catId);
-        this.prodList = res;
-        console.log(this.prodList);
-      },
-      (err) => {
-        console.log('error while fetching data');
-      }
-    );
+    if (this.Location.path() == `/menu/brand/${this.brandId}`) {
+      this.productService.getProductByBrand(this.brandId).subscribe(
+        (res: any) => {
+          console.log(this.brandId);
+          this.prodList = res;
+          console.log('brand', this.prodList);
+        },
+        (err) => {
+          console.log('error while fetching data');
+        }
+      );
+    } else if (this.Location.path() == `/menu/cate/${this.catId}`) {
+      this.productService.getProductByCate(this.catId).subscribe(
+        (res: any) => {
+          console.log(this.catId);
+          this.prodList = res;
+          console.log('cate', this.prodList);
+        },
+        (err) => {
+          console.log('error while fetching data');
+        }
+      );
+    } else if (this.Location.path() == `/menu/sex/${this.sexId}`) {
+      this.productService.getProductBySex(this.sexId).subscribe(
+        (res: any) => {
+          console.log(this.sexId);
+          this.prodList = res;
+          console.log('sex', this.prodList);
+        },
+        (err) => {
+          console.log('error while fetching data');
+        }
+      );
+    }
   }
   getAllCategory() {
     this.empService.getAllCategory().subscribe(

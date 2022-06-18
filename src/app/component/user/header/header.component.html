@@ -18,10 +18,58 @@
           <!-- Top Right -->
           <div class="right-content">
             <ul class="list-main">
-              <li><i class="ti-location-pin"></i> Store location</li>
-              <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
-              <li><i class="ti-user"></i> <a href="#">My account</a></li>
-              <li><i class="ti-power-off"></i><a href="#">Login</a></li>
+              <li><i class="ti-user"></i> <a href="#">Tài khoản</a></li>
+              <li><i class="ti-power-off"></i><a href="#">Đăng nhập</a></li>
+              <li>
+                <div class="sinlge-bar shopping">
+                  <a routerLink="/cart" class="single-icon"
+                    ><i class="ti-bag"></i>
+                    <span class="total-count">{{ totalItemNumber }}</span></a
+                  >
+                  <!-- Shopping Item -->
+                  <div class="shopping-item">
+                    <div class="dropdown-cart-header">
+                      <span>{{ totalItemNumber }} Items</span>
+                      <a>View Cart</a>
+                    </div>
+                    <ul class="shopping-list">
+                      <li *ngFor="let item of products">
+                        <a href="#" class="remove" title="Remove this item"
+                          ><i class="fa fa-remove"></i
+                        ></a>
+                        <a class="cart-img" href="#"
+                          ><img [src]="createImgPath(item.IMAGE)" alt="#"
+                        /></a>
+                        <h4>
+                          <a href="#">{{ item.NAME }}</a>
+                        </h4>
+                        <p class="quantity">
+                          <span class="amount">${{ item.PRICE }}</span>
+                        </p>
+                      </li>
+                      <!-- <li>
+                    <a href="#" class="remove" title="Remove this item"
+                      ><i class="fa fa-remove"></i
+                    ></a>
+                    <a class="cart-img" href="#"
+                      ><img src="https://via.placeholder.com/70x70" alt="#"
+                    /></a>
+                    <h4><a href="#">Woman Necklace</a></h4>
+                    <p class="quantity">
+                      1x - <span class="amount">$35.00</span>
+                    </p>
+                  </li> -->
+                    </ul>
+                    <div class="bottom">
+                      <div class="total">
+                        <span>Total</span>
+                        <span class="total-amount">$</span>
+                      </div>
+                      <a href="#" class="btn animate">Checkout</a>
+                    </div>
+                  </div>
+                </div>
+              </li>
             </ul>
           </div>
           <!-- End Top Right -->
@@ -36,7 +84,7 @@
           <div class="col-lg-3">
             <div class="all-category">
               <h3 class="cat-heading">
-                <i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES
+                <i class="fa fa-bars" aria-hidden="true"></i>Danh mục
               </h3>
             </div>
           </div>
@@ -47,28 +95,10 @@
                 <div class="navbar-collapse">
                   <div class="nav-inner">
                     <ul class="nav main-menu menu navbar-nav">
-                      <li><a href="#">Home</a></li>
-                      <li class="active"><a routerLink="/menu">Product</a></li>
-                      <li><a href="#">Service</a></li>
-                      <li>
-                        <a href="#"
-                          >Shop<i class="ti-angle-down"></i
-                          ><span class="new">New</span></a
-                        >
-                        <ul class="dropdown">
-                          <li><a href="#">Shop Grid</a></li>
-                          <li><a href="#">Cart</a></li>
-                          <li><a href="#">Checkout</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="#">Pages</a></li>
-                      <li>
-                        <a href="#">Blog<i class="ti-angle-down"></i></a>
-                        <ul class="dropdown">
-                          <li><a href="#">Blog Single Sidebar</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="#">Contact Us</a></li>
+                      <li><a href="#">Trang chủ</a></li>
+                      <li class="active"><a routerLink="/menu">Sản phẩm</a></li>
+                      <li><a href="#">Dịch vụ</a></li>
+                      <li><a href="#">Liên hệ</a></li>
                     </ul>
                   </div>
                 </div>
@@ -85,7 +115,7 @@
     <div class="container">
       <nav>
         <ol class="breadcrumb text-white">
-          <li class="breadcrumb-item active"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active"><a href="#">Trang chủ</a></li>
           <li class="breadcrumb-item active" aria-current="page">
             <a href="#">Category</a>
           </li>

@@ -1,0 +1,16 @@
+.order-lg-last img {
+    width: 2000px;
+    height: 500px;
+}
+.col-lg-6 
+{
+    min-width: 100%;
+}
+.p-5{
+ padding: 5% 0 0 0 !important;
+ 
+}
+.fa-chevron-left,.fa-chevron-right
+{
+    color: black;
+}

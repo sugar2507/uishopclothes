@@ -14,7 +14,14 @@ INCLUDE STYLES AND COMPONENTS
 a:hover {
   text-decoration: none;
 }
-
+.btn-block {
+  background-color: #f7941d !important;
+  color: #fff;
+}
+.btn-block span{
+ 
+  color: #fff;
+}
 .img-wrap {
   text-align: center;
   display: block;

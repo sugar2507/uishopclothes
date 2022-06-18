@@ -20,7 +20,8 @@ export class CenterComponent implements OnInit {
   prodList: Product[] = [];
   cart: CartItem[] = [];
   products: any = [];
-
+  prodListMan: Product[] = [];
+  prodListWomen: Product[] = [];
   empDetail!: FormGroup;
   PhotoFilePath!: string;
   constructor(
@@ -36,15 +37,38 @@ export class CenterComponent implements OnInit {
     //   id: [''],
     //   name: [''],
     // });
+    this.getProductByMan();
+    this.getProductByWoman();
     this.getAllProduct();
   }
   addToCart(product: Product) {
     this.CartService.addToCart(product);
-  
+
     // this.cart.qty=1;
     window.alert('Your product has been added to the cart!');
   }
-
+  getProductByMan() {
+    this.prodService.getProductBySex(1).subscribe(
+      (res) => {
+        this.prodListMan = res;
+        this.PhotoFilePath = this.prodService.PhotoUrl;
+      },
+      (err) => {
+        console.log('error while fetching data');
+      }
+    );
+  }
+  getProductByWoman() {
+    this.prodService.getProductBySex(2).subscribe(
+      (res) => {
+        this.prodListWomen = res;
+        this.PhotoFilePath = this.prodService.PhotoUrl;
+      },
+      (err) => {
+        console.log('error while fetching data');
+      }
+    );
+  }
   getAllProduct() {
     this.prodService.getAllProduct().subscribe(
       (res) => {
@@ -62,9 +86,4 @@ export class CenterComponent implements OnInit {
       ''
     );
   };
-  addTocart(product: Product) {
-    this.CartService.addToCart(product);
-    window.alert('Your product has been added to the cart!');
-  }
- 
 }

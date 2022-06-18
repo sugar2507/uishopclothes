@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../../service/cart.service';
 import { getAuth } from 'firebase/auth';
+import { CategoriesService } from 'src/app/service/category.service';
+import { Categories } from 'src/app/model/category';
 
 @Component({
   selector: 'app-header-home',
@@ -10,9 +12,13 @@ import { getAuth } from 'firebase/auth';
 export class HeaderHomeComponent implements OnInit {
   totalItemNumber: number = 0;
   products: any = [];
-
-  constructor(private cartService: CartService) {}
+  cateList: Categories[] = [];
+  constructor(
+    private cartService: CartService,
+    private cateService: CategoriesService
+  ) {}
   ngOnInit(): void {
+    this.getAllCategory();
     this.cartService.getProductData().subscribe((res) => {
       this.totalItemNumber = res.length;
       this.products = res;
@@ -21,6 +27,16 @@ export class HeaderHomeComponent implements OnInit {
   }
   email!: string;
 
+  getAllCategory() {
+    this.cateService.getAllCategory().subscribe(
+      (res) => {
+        this.cateList = res;
+      },
+      (err) => {
+        console.log('error while fetching data');
+      }
+    );
+  }
   getUser() {
     if (getAuth()) {
       const auth = getAuth();

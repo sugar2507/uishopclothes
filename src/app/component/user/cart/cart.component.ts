@@ -43,7 +43,6 @@ export class CartComponent implements OnInit {
       this.products = res;
       this.ICart = res;
       this.ListDeOrder = res;
-      console.log('cart-res', this.ICart);
 
       this.totalItemNumber = res.length;
 
@@ -85,21 +84,6 @@ export class CartComponent implements OnInit {
       ''
     );
   };
-  saveCartItem() {
-    for (var i = 0; i < this.ICart.length; i++) {
-      (this.deorder.IDPRODUCT = this.ICart[i].productId),
-        (this.deorder.IDORDER = this.order.ID),
-        (this.deorder.PRICE = this.totalItemPrice),
-        this.deOrderService.addCartItem(this.deorder).subscribe(
-          (res) => {
-            console.log('deOrder', this.deorder);
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
-    }
-  }
   getOrder() {
     this.orderService.getOrder().subscribe(
       (res) => {
@@ -117,8 +101,25 @@ export class CartComponent implements OnInit {
     );
   }
 
+  saveCartItem() {
+    for (var i = 0; i < this.ICart.length; i++) {
+      (this.deorder.IDPRODUCT = this.ICart[i].productId),
+        (this.deorder.IDORDER = this.order.ID),
+        (this.deorder.PRICE = this.totalItemPrice),
+        (this.deorder.QUANTITY = this.ICart[i].qty);
+      this.deOrderService.addCartItem(this.deorder).subscribe(
+        (res) => {
+          console.log('deOrder', this.deorder);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
+  }
+
   addCartItem() {
-    console.log(this.idOrder);
+    console.log('ID order', this.idOrder);
     this.order.ORI_PRICE = this.totalItemOriPrice;
     this.order.TOTALMONEY = this.totalItemPrice;
     this.order.ID = this.idOrder + 1;
@@ -126,12 +127,12 @@ export class CartComponent implements OnInit {
 
     this.orderService.addOrder(this.order).subscribe(
       (res) => {
-        console.log(this.order.ID);
+        // console.log(this.order.ID);
+        this.saveCartItem();
       },
       (err) => {
         console.log(err);
       }
     );
-    this.saveCartItem();
   }
 }

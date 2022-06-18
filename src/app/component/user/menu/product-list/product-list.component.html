@@ -12,12 +12,13 @@
         <div class="fix-height">
           <a class="title">{{ prod.NAME }}</a>
           <div class="price-wrap mt-2">
-            <span class="price">${{ prod.PRICE }}</span>
-            <del class="price-old">$1980</del>
+            <span class="price">{{ prod.PRICE }}đ</span>
           </div>
           <!-- price-wrap.// -->
         </div>
-        <a class="btn btn-block btn-primary" (click)="addToCart(prod)">Add to cart </a>
+        <a class="btn btn-block" (click)="addToCart(prod)">
+          <span>Thêm vào giỏ hàng</span>
+        </a>
       </figcaption>
     </figure>
   </div>

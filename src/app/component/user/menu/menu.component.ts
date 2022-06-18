@@ -3,6 +3,10 @@ import { Categories } from 'src/app/model/category';
 import { Product } from 'src/app/model/product';
 import { CategoriesService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
+import { CompaniesService } from './../../../service/company.service';
+import { Companies } from 'src/app/model/companies';
+import { Sex } from 'src/app/model/sex';
+import { SexService } from 'src/app/service/sex.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +14,9 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
-  empList: Categories[] = [];
+  cateList: Categories[] = [];
+  branchList: Companies[] = [];
+  sexList: Sex[] = [];
   @Input()
   index!: number;
   PhotoFilePath!: string;
@@ -18,11 +24,14 @@ export class MenuComponent implements OnInit {
   dataPro: any;
   constructor(
     private prodService: ProductService,
-
-    private empService: CategoriesService
+    private branchService: CompaniesService,
+    private cateService: CategoriesService,
+    private sexService: SexService
   ) {}
 
   ngOnInit(): void {
+    this.getAllSex();
+    this.getAllBranch();
     this.getAllCategory();
     this.getAllProduct();
   }
@@ -35,10 +44,23 @@ export class MenuComponent implements OnInit {
   // public createImgPath = (serverPath: string) => {
   //   return `assets/img/${serverPath}`;
   // };
+  getAllBranch() {
+    this.branchService.getAllCompanies().subscribe((res) => {
+      this.branchList = res;
+      console.log(res);
+    });
+  }
+  getAllSex() {
+    this.sexService.getAllSex().subscribe((res) => {
+      this.sexList = res;
+      console.log(res);
+    });
+  }
+
   getAllCategory() {
-    this.empService.getAllCategory().subscribe(
+    this.cateService.getAllCategory().subscribe(
       (res) => {
-        this.empList = res;
+        this.cateList = res;
         console.log(res);
       },
       (err) => {

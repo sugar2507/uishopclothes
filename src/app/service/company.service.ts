@@ -26,7 +26,7 @@ export class CompaniesService {
       })
     );
   }
-
+  
   getAllCompanies() {
     return this.http.get<Companies>(this.getEmpUrl).pipe(
       map((res: any) => {

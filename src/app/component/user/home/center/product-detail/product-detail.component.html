@@ -1,5 +1,146 @@
+<header class="header shop">
+  <div class="topbar">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-12 col-12">
+          <!-- Top Left -->
+          <div class="top-left">
+            <ul class="list-main">
+              <li><i class="ti-headphone-alt"></i> 0797052231</li>
+              <li><i class="ti-email"></i> 18dh110397@st.huflit.edu.vn</li>
+            </ul>
+          </div>
+          <!--/ End Top Left -->
+        </div>
+        <div class="col-lg-8 col-md-12 col-12">
+          <!-- Top Right -->
+          <div class="right-content">
+            <ul class="list-main">
+              <li><i class="ti-location-pin"></i> Vị trí cửa hàng</li>
+
+              <li>
+                <i class="ti-user"></i> <a href="#">{{ this.email }}</a>
+              </li>
+              <li><i class="ti-power-off"></i><a href="#"> </a></li>
+            </ul>
+          </div>
+          <!-- End Top Right -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="middle-inner">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-12">
+          <!-- Logo -->
+          <div class="logo">
+            <a href="#">H&T Shop</a>
+          </div>
+          <!--/ End Logo -->
+          <!-- Search Form -->
+          <div class="search-top">
+            <div class="top-search">
+              <a href="#0"><i class="ti-search"></i></a>
+            </div>
+            <!-- Search Form -->
+            <div class="search-top">
+              <form class="search-form">
+                <input type="text" placeholder="Search here..." name="search" />
+                <button value="search" type="button">
+                  <i class="ti-search"></i>
+                </button>
+              </form>
+            </div>
+            <!--/ End Search Form -->
+          </div>
+          <!--/ End Search Form -->
+          <div class="mobile-nav"></div>
+        </div>
+        <div class="col-lg-8 col-md-7 col-12" style="display: flex">
+          <div class="search-bar-top">
+            <div class="search-bar">
+              <form>
+                <input
+                  name="search"
+                  placeholder="Tìm kiếm....."
+                  type="search"
+                />
+                <button class="btnn"><i class="ti-search"></i></button>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-12">
+            <div class="right-bar">
+              <!-- Search Form -->
+              <div class="sinlge-bar">
+                <a href="#" class="single-icon"
+                  ><i class="fa fa-heart-o" aria-hidden="true"></i
+                ></a>
+              </div>
+              <div class="sinlge-bar">
+                <a href="#" class="single-icon"
+                  ><i class="fa fa-user-circle-o" aria-hidden="true"></i
+                ></a>
+              </div>
+              <div class="sinlge-bar shopping">
+                <a routerLink="/cart" class="single-icon"
+                  ><i class="ti-bag"></i>
+                  <span class="total-count">{{ totalItemNumber }}</span></a
+                >
+                <!-- Shopping Item -->
+                <div class="shopping-item">
+                  <div class="dropdown-cart-header">
+                    <span>{{ totalItemNumber }} Items</span>
+                    <a>View Cart</a>
+                  </div>
+                  <ul class="shopping-list">
+                    <li *ngFor="let item of products">
+                      <a href="#" class="remove" title="Remove this item"
+                        ><i class="fa fa-remove"></i
+                      ></a>
+                      <a class="cart-img" href="#"
+                        ><img [src]="createImgPath(item.IMAGE)" alt="#"
+                      /></a>
+                      <h4>
+                        <a href="#">{{ item.NAME }}</a>
+                      </h4>
+                      <p class="quantity">
+                        <span class="amount">${{ item.PRICE }}</span>
+                      </p>
+                    </li>
+                    <!-- <li>
+                    <a href="#" class="remove" title="Remove this item"
+                      ><i class="fa fa-remove"></i
+                    ></a>
+                    <a class="cart-img" href="#"
+                      ><img src="https://via.placeholder.com/70x70" alt="#"
+                    /></a>
+                    <h4><a href="#">Woman Necklace</a></h4>
+                    <p class="quantity">
+                      1x - <span class="amount">$35.00</span>
+                    </p>
+                  </li> -->
+                  </ul>
+                  <div class="bottom">
+                    <div class="total">
+                      <span>Total</span>
+                      <span class="total-amount">$</span>
+                    </div>
+                    <a href="#" class="btn animate">Checkout</a>
+                  </div>
+                </div>
+              </div>
+              <!--/ End Shopping Item -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 <section class="single-product">
-  <div class="container">
+  <div class="container" style="margin-bottom: 10%">
     <div class="row">
       <div class="col-md-5">
         <div class="single-product-slider">
@@ -69,40 +210,21 @@
           <div class="sku_wrapper mb-4">
             ID: <span class="text-muted">{{ product[i].ID }} </span>
           </div>
-          <div>
-            <a routerLink="/cart"> <i class="fa fa-shopping-bag"></i></a>
-          </div>
+
           <hr />
 
-          <h3 class="product-price">
-            $300 <del>${{ product[i].PRICE }}</del>
-          </h3>
+          <h3 class="product-price">${{ product[i].PRICE }}</h3>
 
           <p class="product-description my-4">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum
-            ipsum dicta quod, quia doloremque aut deserunt commodi quis. Totam a
-            consequatur beatae nostrum, earum consequuntur? Eveniet consequatur
-            ipsum dicta recusandae.
+            {{ product[i].DESCRIPTION }}
           </p>
           <form class="cart" method="post">
-            <div class="quantity d-flex align-items-center">
-              <input
-                type="number"
-                id=""
-                class="input-text qty text form-control w-25 mr-3"
-                step="1"
-                min="1"
-                max="9"
-                name="quantity"
-                value="1"
-                title="Qty"
-                size="4"
-              />
+            <div class="quantity d-flex detail-product-button">
               <a
-                (click)="addToCart(product)"
+                (click)="addToCart(product[i])"
                 class="btn btn-main btn-small"
                 style="border: solid 2px orange"
-                >Add to cart</a
+                >Thêm vào giỏ hàng</a
               >
             </div>
           </form>
@@ -127,12 +249,24 @@
                 Size :
               </td>
               <td>
-                <select class="form-control">
+                <!-- <select class="form-control">
                   <option>S</option>
                   <option>M</option>
                   <option>L</option>
                   <option>XL</option>
-                </select>
+                </select> -->
+              </td>
+
+              <td>
+                {{ product[i].SIZE }}
+              </td>
+            </tr>
+            <tr>
+              <td class="font-weight-bold text-capitalize product-meta-title">
+                Quantity :
+              </td>
+              <td>
+                {{ product[i].QUANTITY }}
               </td>
             </tr>
             <tr>
@@ -195,202 +329,6 @@
         </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-lg-12">
-        <nav class="product-info-tabs wc-tabs mt-5 mb-5">
-          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-            <a
-              class="nav-item nav-link active"
-              id="nav-home-tab"
-              data-toggle="tab"
-              href="#nav-home"
-              role="tab"
-              aria-controls="nav-home"
-              aria-selected="true"
-              >Description</a
-            >
-            <a
-              class="nav-item nav-link"
-              id="nav-profile-tab"
-              data-toggle="tab"
-              href="#nav-profile"
-              role="tab"
-              aria-controls="nav-profile"
-              aria-selected="false"
-              >Additional Information</a
-            >
-            <a
-              class="nav-item nav-link"
-              id="nav-contact-tab"
-              data-toggle="tab"
-              href="#nav-contact"
-              role="tab"
-              aria-controls="nav-contact"
-              aria-selected="false"
-              >Reviews(2)</a
-            >
-          </div>
-        </nav>
-        <div class="tab-content" id="nav-tabContent">
-          <div
-            class="tab-pane fade show active"
-            id="nav-home"
-            role="tabpanel"
-            aria-labelledby="nav-home-tab"
-          >
-            <p>
-              Pellentesque habitant morbi tristique senectus et netus et
-              malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat
-              vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit
-              amet quam egestas semper. Aenean ultricies mi vitae est. Mauris
-              placerat eleifend leo.
-            </p>
-            <h4>Product Features</h4>
-            <ul class="">
-              <li>
-                Mapped with 3M™ Thinsulate™ Insulation [40G Body / Sleeves /
-                Hood]
-              </li>
-              <li>Embossed Taffeta Lining</li>
-              <li>
-                DRYRIDE Durashell™ 2-Layer Oxford Fabric [10,000MM, 5,000G]
-              </li>
-            </ul>
-          </div>
-          <div
-            class="tab-pane fade"
-            id="nav-profile"
-            role="tabpanel"
-            aria-labelledby="nav-profile-tab"
-          >
-            <ul class="list-unstyled info-desc">
-              <li class="d-flex">
-                <strong>Weight </strong>
-                <span>400 g</span>
-              </li>
-              <li class="d-flex">
-                <strong>Dimensions </strong>
-                <span>10 x 10 x 15 cm</span>
-              </li>
-              <li class="d-flex">
-                <strong>Materials</strong>
-                <span>60% cotton, 40% polyester</span>
-              </li>
-              <li class="d-flex">
-                <strong>Color </strong>
-                <span>Blue, Gray, Green, Red, Yellow</span>
-              </li>
-              <li class="d-flex">
-                <strong>Size</strong>
-                <span>L, M, S, XL, XXL</span>
-              </li>
-            </ul>
-          </div>
-          <div
-            class="tab-pane fade"
-            id="nav-contact"
-            role="tabpanel"
-            aria-labelledby="nav-contact-tab"
-          >
-            <div class="row">
-              <div class="col-lg-7">
-                <div class="media review-block mb-4">
-                  <img
-                    src="assets/images/avater-1.jpg"
-                    alt="reviewimg"
-                    class="img-fluid mr-4"
-                  />
-                  <div class="media-body">
-                    <div class="product-review">
-                      <span><i class="tf-ion-android-star"></i></span>
-                      <span><i class="tf-ion-android-star"></i></span>
-                      <span><i class="tf-ion-android-star"></i></span>
-                      <span><i class="tf-ion-android-star"></i></span>
-                      <span><i class="tf-ion-android-star"></i></span>
-                    </div>
-                    <h6>
-                      Therichpost
-                      <span class="text-sm text-muted font-weight-normal ml-3"
-                        >-June 23, 2019</span
-                      >
-                    </h6>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Ipsum suscipit consequuntur in, perspiciatis laudantium
-                      ipsa fugit. Iure esse saepe error dolore quod.
-                    </p>
-                  </div>
-                </div>
-                <div class="media review-block">
-                  <img
-                    src="assets/images/avater-2.jpg"
-                    alt="reviewimg"
-                    class="img-fluid mr-4"
-                  />
-                  <div class="media-body">
-                    <div class="product-review">
-                      <span><i class="tf-ion-android-star"></i></span>
-                      <span><i class="tf-ion-android-star"></i></span>
-                      <span><i class="tf-ion-android-star"></i></span>
-                      <span><i class="tf-ion-android-star"></i></span>
-                      <span><i class="tf-ion-android-star-outline"></i></span>
-                    </div>
-                    <h6>
-                      Therichpost
-                      <span class="text-sm text-muted font-weight-normal ml-3"
-                        >-June 23, 2019</span
-                      >
-                    </h6>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Ipsum suscipit consequuntur in, perspiciatis laudantium
-                      ipsa fugit. Iure esse saepe error dolore quod.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-5">
-                <div class="review-comment mt-5 mt-lg-0">
-                  <h4 class="mb-3">Add a Review</h4>
-                  <form action="#">
-                    <div class="starrr"></div>
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Your Name"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="email"
-                        class="form-control"
-                        placeholder="Your Email"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <textarea
-                        name="comment"
-                        id="comment"
-                        class="form-control"
-                        cols="30"
-                        rows="4"
-                        placeholder="Your Review"
-                      ></textarea>
-                    </div>
-                    <a
-                      routerLink="/product-single"
-                      class="btn btn-main btn-small"
-                      >Submit Review</a
-                    >
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
+<app-footer></app-footer>
