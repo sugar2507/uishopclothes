@@ -98,6 +98,7 @@ export class CartComponent implements OnInit {
             console.log(err);
           }
         );
+      
     }
   }
   getOrder() {
@@ -126,12 +127,11 @@ export class CartComponent implements OnInit {
 
     this.orderService.addOrder(this.order).subscribe(
       (res) => {
-        console.log(this.order.ID);
+        this.saveCartItem();
       },
       (err) => {
         console.log(err);
       }
     );
-    this.saveCartItem();
   }
 }
