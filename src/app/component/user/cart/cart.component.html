@@ -1,44 +1,46 @@
-<header class="section-header">
-  <section class="header-main border-bottom">
+<header class="header shop">
+  <div class="topbar">
     <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-2 col-4">
-          <a href="#">Company Name</a>
-        </div>
-        <div class="col-lg-6 col-sm-12">
-          <form action="#" class="search">
-            <div class="input-group w-100">
-              <input type="text" class="form-control" placeholder="Search" />
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">
-                  <i class="fa fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-          <!-- search-wrap .end// -->
-        </div>
-        <!-- col.// -->
-        <div class="col-lg-4 col-sm-6 col-12">
-          <div class="widgets-wrap float-md-right">
-            <div class="widget-header icontext">
-              <div class="text">
-                <span class="text-muted">Welcome!</span>
-                <div>
-                  <a href="#">Sign in</a> |
-                  <a href="#">Register</a>
-                </div>
-              </div>
-            </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-12 col-12">
+          <!-- Top Left -->
+          <div class="top-left">
+            <ul class="list-main">
+              <li><i class="ti-headphone-alt"></i> 0797052231</li>
+              <li><i class="ti-email"></i> 18dh110397@st.huflit.edu.vn</li>
+            </ul>
           </div>
-          <!-- widgets-wrap.// -->
+          <!--/ End Top Left -->
         </div>
-        <!-- col.// -->
+        <div class="col-lg-8 col-md-12 col-12">
+          <!-- Top Right -->
+          <div class="right-content">
+            <ul class="list-main">
+              <li><i class="ti-location-pin"></i> Vị trí cửa hàng</li>
+
+              <li>
+                <i class="ti-user"></i>
+                <a *ngIf="this.email; else NonLogin">
+                  {{ this.email }}
+                </a>
+                <ng-template #NonLogin><a>Anonymous</a></ng-template>
+              </li>
+              <li>
+                <i class="ti-power-off"></i>
+                <a *ngIf="this.email; else NonEmail">
+                  <a (click)="logout()">Đăng xuất</a>
+                </a>
+                <ng-template #NonEmail
+                  ><a [routerLink]="['auth/login']">Đăng nhập</a></ng-template
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- End Top Right -->
+        </div>
       </div>
-      <!-- row.// -->
     </div>
-    <!-- container.// -->
-  </section>
+  </div>
   <!-- header-main .// -->
 </header>
 <!-- section-header.// -->
@@ -49,7 +51,7 @@
     class="container padding-y"
     style="padding-top: 25px; padding-bottom: 25px"
   >
-    <h2 class="title-page">Shopping cart</h2>
+    <h2 class="title-page">Giỏ hàng</h2>
   </div>
   <!-- container //  -->
 </section>
@@ -58,179 +60,131 @@
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
   <div class="container">
-    <form [formGroup]="orderForm">
-      <div class="row">
-        <main class="col-md-9">
-          <div class="card">
-            <table class="table table-borderless table-shopping-cart">
-              <thead class="text-muted">
-                <tr class="small text-uppercase">
-                  <th scope="col">Product</th>
-                  <th scope="col"></th>
-                  <th scope="col" width="120">Quantity</th>
-                  <th scope="col" width="120">Price</th>
-                  <th scope="col" class="text-right" width="200"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of ICart">
-                  <td>
-                    <div class="itemside">
-                      <figure class="aside">
-                        <img
-                          [src]="createImgPath(item.img)"
-                          class="img-sm"
-                          style="width: 150px; height: 150px"
-                        />
-                      </figure>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="info">
-                      <a href="#" class="title text-dark">{{
-                        item.productName
-                      }}</a>
-                      <p class="text-muted small">
-                        Size: XL, Color: blue, <br />
-                        Brand:item.COMPANY
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <select class="form-control">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                    </select>
-                  </td>
-                  <td>
-                    <div class="price-wrap">
-                      <var class="price">$1156.00(price*{{ item.qty }})</var>
-                      <small class="text-muted"> ${{ item.price }}/each </small>
-                    </div>
-                  </td>
-                  <td class="text-right">
-                    <a (click)="removeProduct(item)" class="btn btn-light">
-                      Remove</a
-                    >
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="itemside">
-                      <figure class="aside">
-                        <img
-                          src="assets/images/items/2.jpg"
-                          class="img-sm"
-                          style="width: 150px"
-                        />
-                      </figure>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="info">
-                      <a href="#" class="title text-dark">item.NAME</a>
-                      <p class="text-muted small">
-                        Size: XL, Color: blue, <br />
-                        Brand: Gucci
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <select class="form-control">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                    </select>
-                  </td>
-                  <td>
-                    <div class="price-wrap">
-                      <var class="price">$1156.00</var>
-                      <small class="text-muted"> $315.20 each </small>
-                    </div>
-                  </td>
-                  <td class="text-right">
-                    <a href="" class="btn btn-light"> Remove</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+    <div class="row">
+      <main class="col-md-9">
+        <div class="card">
+          <table class="table table-borderless table-shopping-cart">
+            <thead class="text-muted">
+              <tr class="small text-uppercase">
+                <th scope="col">Sản phẩm</th>
+                <th scope="col"></th>
+                <th scope="col" width="120">Số lượng</th>
+                <th scope="col" width="120">Giá</th>
+                <th scope="col" class="text-right" width="200"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of ICart">
+                <td>
+                  <div class="itemside">
+                    <figure class="aside">
+                      <img
+                        [src]="createImgPath(item.img)"
+                        class="img-sm"
+                        style="width: 150px; height: 150px"
+                      />
+                    </figure>
+                  </div>
+                </td>
+                <td>
+                  <div class="info">
+                    <a href="#" class="title text-dark">{{
+                      item.productName
+                    }}</a>
+                    <p class="text-muted small">
+                      Size: XL, Color: blue, <br />
+                      Brand:item.COMPANY
+                    </p>
+                  </div>
+                </td>
+                <td>
+                  <p>x{{ item.qty }}</p>
+                </td>
+                <td>
+                  <div class="price-wrap">
+                    <p class="text-muted">{{ item.price }}đ</p>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <a (click)="removeProduct(item)" class="btn btn-light">
+                    Xóa</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-            <div class="card-body border-top">
-              <a
-                [routerLink]="['checkout']"
-                (click)="addCartItem()"
-                class="btn btn-primary float-md-right"
-              >
-                Make Purchase <i class="fa fa-chevron-right"></i>
-              </a>
-              <a href="/" class="btn btn-light">
-                <i class="fa fa-chevron-left"></i> Continue shopping
-              </a>
-            </div>
+          <div class="card-body border-top">
+            <a
+              [routerLink]="['checkout']"
+              class="btn btn-primary float-md-right"
+            >
+              Tiếp tục <i class="fa fa-chevron-right"></i>
+            </a>
+            <a href="/" class="btn btn-light">
+              <i class="fa fa-chevron-left"></i> Tiếp tục mua hàng
+            </a>
           </div>
-          <!-- card.// -->
+        </div>
+        <!-- card.// -->
 
-          <div class="alert alert-success mt-3">
-            <p class="icontext">
-              <!-- <i class="icon text-success fa fa-truck"></i> -->
-              Free Delivery within 1-2 weeks
+        <div class="alert alert-success mt-3">
+          <p class="icontext">
+            <!-- <i class="icon text-success fa fa-truck"></i> -->
+            Free Delivery within 1-2 weeks
+          </p>
+        </div>
+      </main>
+      <!-- col.// -->
+      <aside class="col-md-3">
+        <div class="card mb-3">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label>Have coupon?</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    placeholder="Coupon code"
+                  />
+                  <span class="input-group-append">
+                    <button class="btn btn-primary">Apply</button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- card-body.// -->
+        </div>
+        <!-- card .// -->
+        <div class="card">
+          <div class="card-body">
+            <dl class="dlist-align">
+              <dt>Total quantity:</dt>
+              <dd class="text-right">
+                <strong>{{ totalItemNumber }}</strong>
+              </dd>
+            </dl>
+
+            <dl class="dlist-align">
+              <dt>Total:</dt>
+              <dd class="text-right h5">
+                <strong>${{ totalItemPrice }}</strong>
+              </dd>
+            </dl>
+            <hr />
+            <p class="text-center mb-3">
+              <img src="assets/images/misc/payments.png" height="26" />
             </p>
           </div>
-        </main>
-        <!-- col.// -->
-        <aside class="col-md-3">
-          <div class="card mb-3">
-            <div class="card-body">
-              <form>
-                <div class="form-group">
-                  <label>Have coupon?</label>
-                  <div class="input-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      name=""
-                      placeholder="Coupon code"
-                    />
-                    <span class="input-group-append">
-                      <button class="btn btn-primary">Apply</button>
-                    </span>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <!-- card-body.// -->
-          </div>
-          <!-- card .// -->
-          <div class="card">
-            <div class="card-body">
-              <dl class="dlist-align">
-                <dt>Total quantity:</dt>
-                <dd class="text-right">
-                  <strong>{{ totalItemNumber }}</strong>
-                </dd>
-              </dl>
-
-              <dl class="dlist-align">
-                <dt>Total:</dt>
-                <dd class="text-right h5">
-                  <strong>${{ totalItemPrice }}</strong>
-                </dd>
-              </dl>
-              <hr />
-              <p class="text-center mb-3">
-                <img src="assets/images/misc/payments.png" height="26" />
-              </p>
-            </div>
-            <!-- card-body.// -->
-          </div>
-          <!-- card .// -->
-        </aside>
-        <!-- col.// -->
-      </div>
-    </form>
+          <!-- card-body.// -->
+        </div>
+        <!-- card .// -->
+      </aside>
+      <!-- col.// -->
+    </div>
   </div>
   <!-- container .//  -->
 </section>

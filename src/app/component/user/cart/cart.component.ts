@@ -9,6 +9,8 @@ import { De_OrderService } from 'src/app/service/de_order.service';
 import { Order } from './../../../model/order';
 import { OrderService } from 'src/app/service/order.service';
 import { DeOrder } from 'src/app/model/de-order';
+import { getAuth } from 'firebase/auth';
+import { FirebaseService } from 'src/app/service/firebase.service';
 
 @Component({
   selector: 'app-cart',
@@ -33,12 +35,12 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private formBuilder: FormBuilder,
     private deOrderService: De_OrderService,
-
+    private auth: FirebaseService,
     private orderService: OrderService,
     private http: HttpClient
   ) {}
   ngOnInit(): void {
-    this.getOrder();
+    // this.getOrder();
     this.cartService.getProductData().subscribe((res) => {
       this.products = res;
       this.ICart = res;
@@ -56,13 +58,27 @@ export class CartComponent implements OnInit {
         this.totalItemOriPrice += this.ICart[i].ori_price;
         this.totalItemPrice += this.ICart[i].price;
       }
+      console.log('price', this.totalItemPrice);
       console.log('cart', this.ICart);
     });
-    this.orderForm = this.formBuilder.group({
-      ori_price: [''],
-      total_money: [''],
-      note: [''],
-    });
+    this.getUser();
+    // this.orderForm = this.formBuilder.group({
+    //   ori_price: [''],
+    //   total_money: [''],
+    //   note: [''],
+    // });
+  }
+  email!: string;
+  logout() {
+    this.auth.logout();
+  }
+  getUser() {
+    if (getAuth()) {
+      const auth = getAuth();
+      console.log(auth.currentUser?.email);
+      this.email = auth.currentUser?.email as string;
+      return this.email;
+    } else return (this.email = 'Anonymous');
   }
   //chua co xong - phai sua lai db
   // addCategory() {

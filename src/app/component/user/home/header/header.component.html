@@ -21,9 +21,21 @@
               <li><i class="ti-location-pin"></i> Vị trí cửa hàng</li>
 
               <li>
-                <i class="ti-user"></i> <a href="#">{{ this.email }}</a>
+                <i class="ti-user"></i>
+                <a *ngIf="this.email; else NonLogin">
+                  {{ this.email }}
+                </a>
+                <ng-template #NonLogin><a>Anonymous</a></ng-template>
               </li>
-              <li><i class="ti-power-off"></i><a href="#"> </a></li>
+              <li>
+                <i class="ti-power-off"></i>
+                <a *ngIf="this.email; else NonEmail">
+                  <a (click)="logout()">Đăng xuất</a>
+                </a>
+                <ng-template #NonEmail
+                  ><a [routerLink]="['auth/login']">Đăng nhập</a></ng-template
+                >
+              </li>
             </ul>
           </div>
           <!-- End Top Right -->
@@ -94,8 +106,8 @@
                 <!-- Shopping Item -->
                 <div class="shopping-item">
                   <div class="dropdown-cart-header">
-                    <span>{{ totalItemNumber }} Items</span>
-                    <a>View Cart</a>
+                    <span>{{ totalItemNumber }} Sản phẩm</span>
+                    <a>Giỏ hàng</a>
                   </div>
                   <ul class="shopping-list">
                     <li *ngFor="let item of products">
@@ -109,7 +121,7 @@
                         <a href="#">{{ item.NAME }}</a>
                       </h4>
                       <p class="quantity">
-                        <span class="amount">${{ item.PRICE }}</span>
+                        <span class="amount">${{ item.PRICE }} đ</span>
                       </p>
                     </li>
                     <!-- <li>
@@ -127,10 +139,12 @@
                   </ul>
                   <div class="bottom">
                     <div class="total">
-                      <span>Total</span>
-                      <span class="total-amount">$</span>
+                      <span>Tổng</span>
+                      <span class="total-amount"
+                        >{{ this.totalItemPrice }}đ</span
+                      >
                     </div>
-                    <a href="#" class="btn animate">Checkout</a>
+                    <a href="#" class="btn animate">Thanh toán</a>
                   </div>
                 </div>
               </div>

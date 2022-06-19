@@ -3,6 +3,9 @@ import { CartService } from '../../../../service/cart.service';
 import { getAuth } from 'firebase/auth';
 import { CategoriesService } from 'src/app/service/category.service';
 import { Categories } from 'src/app/model/category';
+import { Router } from '@angular/router';
+import { FirebaseService } from 'src/app/service/firebase.service';
+import { CartItem } from 'src/app/model/cart';
 
 @Component({
   selector: 'app-header-home',
@@ -11,22 +14,49 @@ import { Categories } from 'src/app/model/category';
 })
 export class HeaderHomeComponent implements OnInit {
   totalItemNumber: number = 0;
+  Login: any;
+  NonLogin: any;
   products: any = [];
   cateList: Categories[] = [];
+  totalItemPrice: number = 0.0;
+  ICart: CartItem[] = [];
   constructor(
     private cartService: CartService,
-    private cateService: CategoriesService
+    private cateService: CategoriesService,
+    private router: Router,
+    private auth: FirebaseService
   ) {}
   ngOnInit(): void {
     this.getAllCategory();
+
     this.cartService.getProductData().subscribe((res) => {
       this.totalItemNumber = res.length;
       this.products = res;
+      this.ICart = res;
+      console.log('cart-res', this.ICart);
+
+      for (var i = 0; i < this.ICart.length; i++) {
+        this.ICart[i].img = res[i].IMAGE;
+        this.ICart[i].productName = res[i].NAME;
+        this.ICart[i].price = res[i].PRICE;
+        this.ICart[i].ori_price = res[i].ORI_PRICE;
+        this.ICart[i].productId = res[i].ID;
+        this.ICart[i].qty = 1;
+
+        console.log('price', this.totalItemPrice);
+      }
+      for (var i = 0; i < 1; i++) {
+        this.totalItemPrice = this.totalItemPrice + this.ICart[i].price;
+      }
+
+      console.log('cart', this.ICart);
     });
     this.getUser();
   }
   email!: string;
-
+  logout() {
+    this.auth.logout();
+  }
   getAllCategory() {
     this.cateService.getAllCategory().subscribe(
       (res) => {

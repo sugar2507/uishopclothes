@@ -22,7 +22,7 @@ import { from, Observable } from 'rxjs';
 export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
-  constructor(private auth: FirebaseService) {}
+  constructor(private auth: FirebaseService, private router: Router) {}
 
   ngOnInit(): void {}
   login() {
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.email, this.password);
     this.email = '';
     this.password = '';
-   
+    localStorage.getItem('token');
   }
   
 }
