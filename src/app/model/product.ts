@@ -9,6 +9,7 @@ export class Product {
   IMAGE: string = '';
   COMPANY: number = 0;
   SEX: number = 0;
+  SIZE:number=0;
   DESCRIPTION: string = '';
   IDCATEGORY: string = '';
 }

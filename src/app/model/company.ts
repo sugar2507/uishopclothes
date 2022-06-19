@@ -1,4 +1,4 @@
-export class Size {
+export class Company {
   ID: number = 0;
   NAME: string = '';
 }

@@ -8,7 +8,7 @@ import { CategoriesService } from 'src/app/service/category.service';
 import { CompaniesService } from 'src/app/service/company.service';
 import { ProductService } from 'src/app/service/product.service';
 import { SexService } from 'src/app/service/sex.service';
-import { Companies } from './../../../model/companies';
+import { Company } from '../../../model/company';
 
 @Component({
   selector: 'app-product',
@@ -36,7 +36,7 @@ export class ProductComponent implements OnInit {
   ) {}
   myselected: any;
   CategoryList: Categories[] = [];
-  CompanyList: Companies[] = [];
+  CompanyList: Company[] = [];
   SexList: Sex[] = [];
   @Input()
   PhotoFilePath: any;
@@ -57,6 +57,7 @@ export class ProductComponent implements OnInit {
       company: [''],
       hotproduct: [''],
       sex: [''],
+      size: [''],
       description: [''],
       idcategory: [''],
     });
@@ -70,6 +71,7 @@ export class ProductComponent implements OnInit {
       company: [''],
       hotproduct: [''],
       sex: [''],
+      size: [''],
       description: [''],
       idcategory: [''],
     });
@@ -155,6 +157,7 @@ export class ProductComponent implements OnInit {
     );
     this.prodObj.COMPANY = this.prodCreate.value.company;
     this.prodObj.SEX = this.prodCreate.value.sex;
+    this.prodObj.SIZE = this.prodCreate.value.size;
     this.prodObj.DESCRIPTION = this.prodCreate.value.description;
     this.prodObj.IDCATEGORY = this.prodCreate.value.idcategory;
     console.log(this.prodCreate.value.idcategory);
@@ -185,6 +188,7 @@ export class ProductComponent implements OnInit {
     this.prodDetail.controls['image'].setValue(product.IMAGE);
     this.prodDetail.controls['company'].setValue(product.COMPANY);
     this.prodDetail.controls['sex'].setValue(product.SEX);
+    this.prodDetail.controls['size'].setValue(product.SIZE);
     this.prodDetail.controls['description'].setValue(product.DESCRIPTION);
     this.prodDetail.controls['idcategory'].setValue(product.IDCATEGORY);
     this.PhotoFilePath =
@@ -206,6 +210,7 @@ export class ProductComponent implements OnInit {
     );
     this.prodObj.COMPANY = this.prodDetail.value.company;
     this.prodObj.SEX = this.prodDetail.value.sex;
+    this.prodObj.SIZE = this.prodDetail.value.size;
     this.prodObj.DESCRIPTION = this.prodDetail.value.description;
     this.prodObj.IDCATEGORY = this.prodDetail.value.idcategory;
     this.PhotoFilePath =
@@ -286,4 +291,5 @@ export class ProductComponent implements OnInit {
       ''
     );
   };
+ 
 }

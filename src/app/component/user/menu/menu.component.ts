@@ -4,7 +4,7 @@ import { Product } from 'src/app/model/product';
 import { CategoriesService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 import { CompaniesService } from './../../../service/company.service';
-import { Companies } from 'src/app/model/companies';
+import { Company } from 'src/app/model/company';
 import { Sex } from 'src/app/model/sex';
 import { SexService } from 'src/app/service/sex.service';
 
@@ -15,7 +15,7 @@ import { SexService } from 'src/app/service/sex.service';
 })
 export class MenuComponent implements OnInit {
   cateList: Categories[] = [];
-  branchList: Companies[] = [];
+  branchList: Company[] = [];
   sexList: Sex[] = [];
   @Input()
   index!: number;

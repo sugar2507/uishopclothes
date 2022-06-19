@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FirebaseService } from 'src/app/service/firebase.service';
 import { RegisterComponent } from './register/register.component';
+
 @NgModule({
   declarations: [LoginComponent, AuthComponent, RegisterComponent],
   imports: [

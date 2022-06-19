@@ -20,9 +20,15 @@ import { UsersComponent } from './users/users.component';
 import { DashboardDoughnut2Component } from './dashboard/dashboard-doughnut2/dashboard-doughnut2.component';
 import { DashboardChartComponent } from './dashboard/dashboard-chart/dashboard-chart.component';
 import { DashboardDoughnutComponent } from './dashboard/dashboard-doughnut/dashboard-doughnut.component';
+import { SizeComponent } from './size/size.component';
+import { SexComponent } from './sex/sex.component';
+import { CompanyComponent } from './company/company.component';
 @NgModule({
   declarations: [
     LayoutComponent,
+    CompanyComponent,
+    SexComponent,
+    SizeComponent,
     CategoryComponent,
     BillComponent,
     DashboardComponent,
@@ -31,10 +37,10 @@ import { DashboardDoughnutComponent } from './dashboard/dashboard-doughnut/dashb
     UsersComponent,
     DashboardDoughnut2Component,
     DashboardChartComponent,
-    DashboardDoughnutComponent
+    DashboardDoughnutComponent,
   ],
   imports: [
-  CommonModule,
+    CommonModule,
     NzMenuModule,
     AdminRoutingModule,
     IconsProviderModule,

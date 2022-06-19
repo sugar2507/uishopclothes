@@ -4,6 +4,8 @@ import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
 import { getAuth } from 'firebase/auth';
+import { SexService } from './../../../../../service/sex.service';
+import { SizeService } from 'src/app/service/size.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,10 +17,19 @@ export class ProductDetailComponent implements OnInit {
   id: any;
   totalItemNumber: number = 0;
   products: any = [];
+  idSex: any;
+  sex: any;
+  nameSex: any;
+
+  idSize: any;
+  size: any;
+  nameSize: any;
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private sexService: SexService,
+    private sizeService: SizeService
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +48,35 @@ export class ProductDetailComponent implements OnInit {
     this.productService.getDetailproduct(this.id).subscribe((res: any) => {
       this.product = res;
       console.log(this.product);
+
+      for (var i = 0; i < this.product.length; i++) {
+        this.idSex = this.product[i].SEX;
+        this.idSize = this.product[i].SIZE;
+        this.sexService.getSexById(this.idSex).subscribe(
+          (res) => {
+            this.sex = res;
+            for (var i = 0; i < this.sex.length; i++) {
+              this.nameSex = this.sex[0].NAME;
+            }
+          },
+          (err) => {
+            'Fetching error';
+          }
+        );
+        this.sizeService.getSizeById(this.idSize).subscribe(
+          (res) => {
+            this.size = res;
+            for (var i = 0; i < this.size.length; i++) {
+              this.nameSize = this.size[0].NAME;
+            }
+          },
+          (err) => {
+            'Fetching error';
+          }
+        );
+      }
+
+      
     });
   }
   addToCart(product: Product) {
@@ -58,4 +98,5 @@ export class ProductDetailComponent implements OnInit {
       ''
     );
   };
+  getSex() {}
 }

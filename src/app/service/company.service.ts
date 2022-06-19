@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Companies } from '../model/companies';
+import { Company } from '../model/company';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -19,29 +19,29 @@ export class CompaniesService {
     this.deleteEmpUrl = 'https://localhost:44377/api/Company';
   }
 
-  addCompanies(emp: Companies) {
-    return this.http.post<Companies>(this.addEmpUrl, emp).pipe(
+  addCompanies(emp: Company) {
+    return this.http.post<Company>(this.addEmpUrl, emp).pipe(
       map((res: any) => {
         return res;
       })
     );
   }
-  
+
   getAllCompanies() {
-    return this.http.get<Companies>(this.getEmpUrl).pipe(
+    return this.http.get<Company>(this.getEmpUrl).pipe(
       map((res: any) => {
         return res;
       })
     );
   }
-  updateCompanies(emp: Companies) {
-    return this.http.put<Companies>(this.getEmpUrl, emp).pipe(
+  updateCompanies(emp: Company) {
+    return this.http.put<Company>(this.getEmpUrl, emp).pipe(
       map((res: any) => {
         return res;
       })
     );
   }
-  deleteCompanies(emp: Companies) {
-    return this.http.delete<Companies>(this.deleteEmpUrl + '/' + emp.ID);
+  deleteCompanies(emp: Company) {
+    return this.http.delete<Company>(this.deleteEmpUrl + '/' + emp.ID);
   }
 }

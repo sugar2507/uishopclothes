@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CartItem } from 'src/app/model/cart';
 import { Product } from 'src/app/model/product';
-import { Companies } from 'src/app/model/companies';
+import { Company } from 'src/app/model/company';
 import { CartService } from 'src/app/service/cart.service';
 import { De_OrderService } from 'src/app/service/de_order.service';
 import { Order } from './../../../model/order';
