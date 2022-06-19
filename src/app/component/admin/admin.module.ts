@@ -23,12 +23,14 @@ import { DashboardDoughnutComponent } from './dashboard/dashboard-doughnut/dashb
 import { SizeComponent } from './size/size.component';
 import { SexComponent } from './sex/sex.component';
 import { CompanyComponent } from './company/company.component';
+import { DetailOrrderComponent } from './order/detail-orrder/detail-orrder.component';
 @NgModule({
   declarations: [
     LayoutComponent,
     CompanyComponent,
     SexComponent,
     SizeComponent,
+    DetailOrrderComponent,
     CategoryComponent,
     BillComponent,
     DashboardComponent,

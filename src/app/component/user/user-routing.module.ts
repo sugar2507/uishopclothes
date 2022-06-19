@@ -54,6 +54,7 @@ const routes: Routes = [
     path: 'detail/:id',
     component: ProductDetailComponent,
   },
+  
 ];
 
 @NgModule({

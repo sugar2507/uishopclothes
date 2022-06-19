@@ -98,5 +98,5 @@ export class ProductDetailComponent implements OnInit {
       ''
     );
   };
-  getSex() {}
+ 
 }

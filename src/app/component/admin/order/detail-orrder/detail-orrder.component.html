@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Quản lý hóa đơn</a>
+        <a class="navbar-brand" href="#">Chi tiết hóa đơn </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -19,31 +19,22 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Tổng tiền</th>
-          <th scope="col">Thời gian</th>
+          <th scope="col">Mã hóa đơn</th>
+          <th scope="col">Sản phẩm</th>
+          <th scope="col">Giá</th>
+          <th scope="col">Số lượng</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let employee of orderList">
-          <td>{{ employee.ID }}</td>
-          <td>{{ employee.TOTALMONEY }}</td>
-          <td>{{ employee.DAY }}</td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-outline-primary me-2"
-              [routerLink]="['detail/' + employee.ID]"
-            >
-              Chi tiết
-            </button>
-          </td>
+        <tr *ngFor="let o of order">
+          <td>{{ o.IDORDER }}</td>
+          <td>{{ this.namePro }}</td>
+          <td>{{ o.PRICE }}</td>
+          <td>{{ o.QUANTITY }}</td>
         </tr>
       </tbody>
     </table>
     <!-- Add employee modal -->
-
-    <!-- Edit employee modal -->
   </div>
 </div>

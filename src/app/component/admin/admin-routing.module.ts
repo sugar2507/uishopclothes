@@ -6,6 +6,7 @@ import { CategoryComponent } from './category/category.component';
 import { CompanyComponent } from './company/company.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutComponent } from './layout/layout.component';
+import { DetailOrrderComponent } from './order/detail-orrder/detail-orrder.component';
 import { OrderComponent } from './order/order.component';
 import { ProductComponent } from './product/product.component';
 import { SexComponent } from './sex/sex.component';
@@ -24,6 +25,10 @@ const routes: Routes = [
       { path: 'size', component: SizeComponent },
       { path: 'company', component: CompanyComponent },
       { path: 'category', component: CategoryComponent },
+      {
+        path: 'order/detail/:id',
+        component: DetailOrrderComponent,
+      },
     ],
   },
 ];

@@ -16,4 +16,9 @@ export class De_OrderService {
   addCartItem(deOrder: DeOrder) {
     return this.http.post<DeOrder>(this.objUrl, deOrder);
   }
+  getDetailOrder(id: number) {
+    return this.http.get<DeOrder[]>(this.objUrl);
+  }
+  
+ 
 }
